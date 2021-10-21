@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Sidebar from "components/sidebar/Sidebar";
 
 const Container = styled.div`
   max-width: 1440px;
@@ -15,7 +16,10 @@ const Inner = styled.div`
 const Layout = ({ children }) => {
   return (
     <Container>
-      <Inner>{children}</Inner>
+      <Inner>
+        <Sidebar />
+        {children}
+      </Inner>
     </Container>
   );
 };
