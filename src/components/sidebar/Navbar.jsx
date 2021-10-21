@@ -1,11 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {
-  ROUTE_GAMES,
-  ROUTE_GENRES,
-  ROUTE_HOME,
-  ROUTE_NEW_RELEASES,
-} from "utils/constants";
+import { ROUTE_GAMES, ROUTE_GENRES, ROUTE_HOME } from "utils/constants";
 import styled from "styled-components";
 
 const NavItem = styled.li`
@@ -37,9 +32,6 @@ const Navbar = () => {
       </NavItem>
       <NavItem>
         <NavLink to={ROUTE_GENRES}>Genres</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to={ROUTE_NEW_RELEASES}>New Releases</NavLink>
       </NavItem>
     </ul>
   );
