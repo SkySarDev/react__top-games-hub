@@ -1,0 +1,3 @@
+export const LOAD_GAMES_LIST = "games/LOAD_GAMES_LIST";
+export const LOAD_GAMES_LIST_SUCCESS = "games/LOAD_GAMES_LIST_SUCCESS";
+export const LOAD_GAMES_LIST_ERROR = "games/LOAD_GAMES_LIST_ERROR";
