@@ -1,3 +1,4 @@
-export const LOAD_GENRES_LIST = "genres/LOAD_GENRES_LIST";
+export const LOAD_GENRES = "genres/LOAD_GENRES";
 export const LOAD_GENRES_LIST_SUCCESS = "genres/LOAD_GENRES_LIST_SUCCESS";
-export const LOAD_GENRES_LIST_ERROR = "genres/LOAD_GENRES_LIST_ERROR";
+export const LOAD_GENRE_SINGLE_SUCCESS = "genres/LOAD_GENRE_SINGLE_SUCCESS";
+export const LOAD_GENRES_ERROR = "genres/LOAD_GENRES_ERROR";
