@@ -1,8 +1,14 @@
-import { ROUTE_GAMES, ROUTE_GENRES, ROUTE_HOME } from "utils/constants";
+import {
+  ROUTE_GAMES,
+  ROUTE_GENRES,
+  ROUTE_HOME,
+  ROUTE_SINGLE_GENRE,
+} from "utils/constants";
 
 import HomePage from "components/pages/HomePage";
-import GamesPage from "components/pages/GamesPage";
-import GenresPage from "components/pages/GenresPage";
+import AllGamesContainer from "containers/AllGamesContainer";
+import AllGenresContainer from "containers/AllGenresContainer";
+import SingleGenreContainer from "containers/SingleGenreContainer";
 
 export const routes = [
   {
@@ -12,12 +18,17 @@ export const routes = [
   },
   {
     path: ROUTE_GAMES,
-    component: GamesPage,
+    component: AllGamesContainer,
     exact: false,
   },
   {
     path: ROUTE_GENRES,
-    component: GenresPage,
+    component: AllGenresContainer,
+    exact: true,
+  },
+  {
+    path: ROUTE_SINGLE_GENRE,
+    component: SingleGenreContainer,
     exact: false,
   },
 ];
