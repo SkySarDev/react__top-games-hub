@@ -1,5 +1,6 @@
 /*noinspection CssInvalidAtRule*/
 @import-normalize;
+@import url("https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&display=swap");
 
 * {
   padding: 0;
@@ -81,6 +82,7 @@ h6 {
 }
 
 body {
+  font-family: "Philosopher", sans-serif;
   background-color: #1b1b1b;
   color: #d9ebe9;
 }

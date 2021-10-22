@@ -3,23 +3,24 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import GenreCard from "components/cards/GenreCard";
+import MainContentLayout from "components/UI/MainContentLayout";
 
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 15px;
+  grid-gap: 20px;
+  padding: 20px;
 `;
 
 const AllGenresPage = ({ genresList }) => {
   return (
-    <div>
-      <h1 style={{ fontSize: 30 }}>Genres</h1>
+    <MainContentLayout title={"All genres"}>
       <Grid>
         {genresList.map((genre) => (
           <GenreCard key={genre.id} data={genre} />
         ))}
       </Grid>
-    </div>
+    </MainContentLayout>
   );
 };
 

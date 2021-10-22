@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_URL } from "utils/constants";
 import * as types from "./types";
 
-export const loadGenres = () => ({ type: types.LOAD_GENRES });
+export const loadGenresStart = () => ({ type: types.LOAD_GENRES_START });
 
 export const loadGenresListSuccess = (payload) => ({
   type: types.LOAD_GENRES_LIST_SUCCESS,
@@ -21,10 +21,11 @@ export const loadGenresError = (payload) => ({
 });
 
 export const fetchGenresList = () => async (dispatch) => {
-  dispatch(loadGenres());
+  dispatch(loadGenresStart());
 
   try {
     const response = await axios.get(`${API_URL}/genres`);
+
     dispatch(loadGenresListSuccess(response.data));
   } catch (err) {
     dispatch(loadGenresError(err));
@@ -32,7 +33,7 @@ export const fetchGenresList = () => async (dispatch) => {
 };
 
 export const fetchGenreSingle = (genre) => async (dispatch) => {
-  dispatch(loadGenres());
+  dispatch(loadGenresStart());
 
   try {
     const response = await axios.get(`${API_URL}/genres/${genre}`);

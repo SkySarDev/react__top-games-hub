@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
+
 import Sidebar from "components/sidebar/Sidebar";
 
 const Container = styled.div`
@@ -8,7 +10,7 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const Inner = styled.div`
+const Grid = styled.div`
   display: grid;
   grid-template-columns: 310px auto;
 `;
@@ -16,12 +18,16 @@ const Inner = styled.div`
 const Layout = ({ children }) => {
   return (
     <Container>
-      <Inner>
+      <Grid>
         <Sidebar />
         {children}
-      </Inner>
+      </Grid>
     </Container>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.element.isRequired,
 };
 
 export default Layout;

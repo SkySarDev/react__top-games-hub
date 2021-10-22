@@ -1,7 +1,9 @@
 import * as types from "./types";
 
 const initialState = {
-  gamesList: [],
+  list: [],
+  singleGame: {},
+  background: null,
   loading: false,
   error: false,
 };
@@ -15,7 +17,7 @@ const gamesReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: false,
-        gamesList: action.payload,
+        ...action.payload,
       };
     case types.LOAD_GAMES_LIST_ERROR:
       return { ...state, loading: false, error: action.payload };

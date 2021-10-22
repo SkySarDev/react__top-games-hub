@@ -1,26 +1,25 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import ContentHeader from "components/UI/ContentHeader";
 import AllGenresPage from "components/pages/AllGenresPage";
 import { fetchGenresList } from "store/reducers/genresReducer/actions";
+import ContentHeader from "components/UI/ContentHeader";
 
 const AllGenresContainer = () => {
-  const { list, background, loading } = useSelector((state) => state.genres);
+  const { list, bgImage, loading } = useSelector((state) => state.genres);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchGenresList());
-  }, []);
+  }, [dispatch]);
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
   return (
     <>
-      {list.length && (
+      {loading || !list.length ? (
+        <h1>Loading...</h1>
+      ) : (
         <div>
-          <ContentHeader image={background} />
+          <ContentHeader image={bgImage} />
           <AllGenresPage genresList={list} />
         </div>
       )}

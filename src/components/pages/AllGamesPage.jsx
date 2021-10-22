@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const AllGamesPage = ({ gamesList }) => {
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <h1 style={{ fontSize: 30 }}>Games</h1>
       <ul>
         {gamesList.map((game) => {
