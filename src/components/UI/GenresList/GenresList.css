@@ -1,0 +1,21 @@
+.genresList {
+  display: flex;
+  column-gap: 5px;
+  max-width: 280px;
+}
+
+.genreItem {
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #59584c;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+
+.genreItem a {
+  color: #e2e0d0;
+}
+
+.genreItem a:hover {
+  color: #999999;
+}

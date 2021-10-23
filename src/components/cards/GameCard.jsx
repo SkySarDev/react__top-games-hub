@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+
+import GenresList from "components/UI/GenresList";
 
 const Wrapper = styled.div`
   position: relative;
@@ -15,7 +16,7 @@ const Background = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url(${(props) => props.image});
+  background-image: url(${({ image }) => image});
   background-position: bottom center;
   background-size: cover;
   border-radius: 5px;
@@ -56,26 +57,6 @@ const InfoRow = styled.div`
   align-items: center;
 `;
 
-const GenresList = styled.div`
-  display: flex;
-  column-gap: 5px;
-  max-width: 280px;
-  //overflow-x: hidden;
-`;
-
-const GenreItem = styled.div`
-  padding: 5px;
-  background: rgba(0, 0, 0, 0.4);
-  color: #999999;
-  border: 1px solid #59584c;
-  border-radius: 3px;
-  transition: color 0.3s;
-
-  &:hover {
-    color: #e2e0d0;
-  }
-`;
-
 const MetaScore = styled.div`
   display: grid;
   justify-content: center;
@@ -85,8 +66,9 @@ const MetaScore = styled.div`
   border-radius: 5px;
   font-size: 14px;
   font-weight: bold;
-  color: #fff;
-  background-color: #4f972c;
+  color: #faf8ea;
+  background-color: ${({ score }) =>
+    score < 50 ? "#9f0000" : score < 75 ? "#9d7c08" : "#4f972c"};
 `;
 
 const GameCard = ({ data }) => {
@@ -98,14 +80,10 @@ const GameCard = ({ data }) => {
         <CardBody>
           <Title>{name}</Title>
           <InfoRow>
-            <GenresList>
-              {genres.map((genreItem) => (
-                <Link key={genreItem.id} to={genreItem.slug}>
-                  <GenreItem>{genreItem.name}</GenreItem>
-                </Link>
-              ))}
-            </GenresList>
-            <MetaScore>{metacritic}</MetaScore>
+            <GenresList genresList={genres} />
+            {metacritic && (
+              <MetaScore score={metacritic}>{metacritic}</MetaScore>
+            )}
           </InfoRow>
         </CardBody>
       </Background>
