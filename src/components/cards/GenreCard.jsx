@@ -1,72 +1,60 @@
 import React from "react";
 import styled from "styled-components";
-
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+
 import { ROUTE_GENRES } from "utils/constants";
 
-const CardWrapper = styled.div`
+import CardBox from "components/cards/CardBox";
+
+const Body = styled.div`
   position: relative;
-  width: 360px;
-  height: 202px;
-  background-image: url(${(props) => props.bgImage});
-  background-position: center;
-  background-size: cover;
-  border-radius: 5px;
-`;
-
-const CardInner = styled.div`
-  padding: 10px;
-`;
-
-const DarkenBackground = styled.div`
-  position: absolute;
-  width: 100%;
+  display: grid;
+  align-content: end;
   height: 100%;
-  transition: opacity 0.3s;
-  background: radial-gradient(
-      50% 150% at 50% 50%,
-      rgba(27, 27, 27, 0) 0%,
-      rgba(27, 27, 27, 0.8) 80%,
-      #1b1b1b 100%
-    ),
-    radial-gradient(
-      150% 50% at 50% 50%,
-      rgba(27, 27, 27, 0) 0%,
-      rgba(27, 27, 27, 0.8) 80%,
-      #1b1b1b 100%
-    );
-
-  &:hover {
-    opacity: 0.5;
-  }
+  padding: 15px;
+  color: #e2e0d0;
 `;
 
-const CardTitle = styled.h3`
-  color: #d9ebe9;
+const Title = styled.h3`
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
+  margin-bottom: 10px;
 `;
 
-const GenreCard = ({ data }) => {
-  const { slug, name, image_background } = data;
+const InfoRow = styled.div`
+  text-align: right;
+  color: #999999;
+`;
 
+const GamesCount = styled.span`
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #59584c;
+  border-radius: 3px;
+  color: #e2e0d0;
+`;
+
+const GenreCard = ({ slug, name, image_background, games_count }) => {
   return (
-    <CardWrapper bgImage={image_background}>
+    <CardBox bgImage={image_background} height={220}>
       <Link to={`${ROUTE_GENRES}/${slug}`}>
-        <DarkenBackground>
-          <CardInner>
-            <CardTitle>{name}</CardTitle>
-          </CardInner>
-        </DarkenBackground>
+        <Body>
+          <Title>{name}</Title>
+          <InfoRow>
+            Games count: <GamesCount>{games_count}</GamesCount>
+          </InfoRow>
+        </Body>
       </Link>
-    </CardWrapper>
+    </CardBox>
   );
 };
 
 export default GenreCard;
 
 GenreCard.propTypes = {
-  data: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  games_count: PropTypes.number.isRequired,
+  image_background: PropTypes.string.isRequired,
 };

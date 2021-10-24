@@ -17,7 +17,7 @@ const AllGenresPage = ({ genresList }) => {
     <MainContentLayout title={"All genres"}>
       <Grid>
         {genresList.map((genre) => (
-          <GenreCard key={genre.id} data={genre} />
+          <GenreCard key={genre.id} {...genre} />
         ))}
       </Grid>
     </MainContentLayout>
