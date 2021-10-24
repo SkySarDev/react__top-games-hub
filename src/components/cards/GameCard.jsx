@@ -3,40 +3,9 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import GenresList from "components/UI/GenresList";
+import CardBox from "components/cards/CardBox";
 
-const Wrapper = styled.div`
-  position: relative;
-  width: 346px;
-  height: 250px;
-  border: 1px solid #59584c;
-  border-radius: 5px;
-`;
-
-const Background = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url(${({ image }) => image});
-  background-position: bottom center;
-  background-size: cover;
-  border-radius: 5px;
-
-  &:before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    background: linear-gradient(
-      180deg,
-      rgba(27, 27, 27, 0) 0%,
-      rgba(27, 27, 27, 0.85) 65%,
-      #1b1b1b 85%
-    );
-  }
-`;
-
-const CardBody = styled.div`
+const Body = styled.div`
   position: relative;
   display: grid;
   align-content: end;
@@ -71,28 +40,25 @@ const MetaScore = styled.div`
     score < 50 ? "#9f0000" : score < 75 ? "#9d7c08" : "#4f972c"};
 `;
 
-const GameCard = ({ data }) => {
-  const { name, background_image, genres, metacritic } = data;
-
+const GameCard = ({ name, background_image, genres, metacritic }) => {
   return (
-    <Wrapper>
-      <Background image={background_image}>
-        <CardBody>
-          <Title>{name}</Title>
-          <InfoRow>
-            <GenresList genresList={genres} />
-            {metacritic && (
-              <MetaScore score={metacritic}>{metacritic}</MetaScore>
-            )}
-          </InfoRow>
-        </CardBody>
-      </Background>
-    </Wrapper>
+    <CardBox bgImage={background_image} height={250}>
+      <Body>
+        <Title>{name}</Title>
+        <InfoRow>
+          <GenresList genresList={genres} />
+          {metacritic && <MetaScore score={metacritic}>{metacritic}</MetaScore>}
+        </InfoRow>
+      </Body>
+    </CardBox>
   );
 };
 
 export default GameCard;
 
 GameCard.propTypes = {
-  data: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  background_image: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
+  metacritic: PropTypes.number,
 };
