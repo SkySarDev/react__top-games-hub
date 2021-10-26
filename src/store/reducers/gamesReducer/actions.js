@@ -2,7 +2,7 @@ import * as types from "./types";
 import axios from "axios";
 import { API_URL } from "utils/constants";
 
-export const loadGamesList = () => ({ type: types.LOAD_GAMES_LIST });
+export const loadGamesListStart = () => ({ type: types.LOAD_GAMES_LIST_START });
 
 export const loadGamesListSuccess = (payload) => ({
   type: types.LOAD_GAMES_LIST_SUCCESS,
@@ -15,7 +15,7 @@ export const loadGamesListError = (payload) => ({
 });
 
 export const fetchGames = () => async (dispatch) => {
-  dispatch(loadGamesList());
+  dispatch(loadGamesListStart());
 
   try {
     const response = await axios.get(`${API_URL}/games`);

@@ -3,14 +3,14 @@ import * as types from "./types";
 const initialState = {
   list: [],
   singleGame: {},
-  background: null,
+  bgImage: null,
   loading: false,
   error: false,
 };
 
 const gamesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.LOAD_GAMES_LIST:
+    case types.LOAD_GAMES_LIST_START:
       return { ...state, loading: true };
     case types.LOAD_GAMES_LIST_SUCCESS:
       return {
