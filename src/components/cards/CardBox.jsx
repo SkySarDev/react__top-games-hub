@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import eyeIcon from "image/icons/eye-preview.svg";
+
 const Wrapper = styled.div`
   position: relative;
   height: ${({ height }) => (height ? height + "px" : "auto")};
@@ -33,10 +35,33 @@ const Background = styled.div`
   }
 `;
 
+const Hover = styled.div`
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background 0.35s;
+  background-color: transparent;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  background-size: 0;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgba(27, 27, 27, 85%);
+    background-image: url(${eyeIcon});
+    background-size: 70px;
+  }
+`;
+
 const CardBox = ({ bgImage, height, children }) => {
   return (
     <Wrapper height={height}>
-      <Background image={bgImage}>{children}</Background>
+      <Background image={bgImage}>
+        <Hover>{children}</Hover>
+      </Background>
     </Wrapper>
   );
 };
