@@ -1,6 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+
+import { ROUTE_GAMES } from "utils/constants";
 
 import GenresList from "components/UI/GenresList";
 import CardBox from "components/cards/CardBox";
@@ -11,6 +14,7 @@ const Body = styled.div`
   align-content: end;
   height: 100%;
   padding: 15px;
+  color: #e2e0d0;
 `;
 
 const Title = styled.h3`
@@ -40,16 +44,20 @@ const MetaScore = styled.div`
     score < 50 ? "#9f0000" : score < 75 ? "#9d7c08" : "#4f972c"};
 `;
 
-const GameCard = ({ name, background_image, genres, metacritic }) => {
+const GameCard = ({ name, slug, background_image, genres, metacritic }) => {
   return (
     <CardBox bgImage={background_image} height={250}>
-      <Body>
-        <Title>{name}</Title>
-        <InfoRow>
-          <GenresList genresList={genres} />
-          {metacritic && <MetaScore score={metacritic}>{metacritic}</MetaScore>}
-        </InfoRow>
-      </Body>
+      <Link to={`${ROUTE_GAMES}/${slug}`}>
+        <Body>
+          <Title>{name}</Title>
+          <InfoRow>
+            <GenresList genresList={genres} />
+            {metacritic && (
+              <MetaScore score={metacritic}>{metacritic}</MetaScore>
+            )}
+          </InfoRow>
+        </Body>
+      </Link>
     </CardBox>
   );
 };
@@ -58,6 +66,7 @@ export default GameCard;
 
 GameCard.propTypes = {
   name: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   background_image: PropTypes.string.isRequired,
   genres: PropTypes.array.isRequired,
   metacritic: PropTypes.number,
