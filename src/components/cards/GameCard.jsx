@@ -9,18 +9,29 @@ import GenresList from "components/UI/GenresList";
 import CardBox from "components/cards/CardBox";
 
 const Body = styled.div`
-  position: relative;
+  display: grid;
+  height: 100%;
+  grid-template-rows: 1fr auto;
+  row-gap: 10px;
+  padding: 15px;
+  align-content: end;
+`;
+
+const ContentRow = styled.div`
   display: grid;
   align-content: end;
   height: 100%;
-  padding: 15px;
-  color: #e2e0d0;
+
+  &:hover h3 {
+    transition: color 0.35s;
+    color: #999999;
+  }
 `;
 
 const Title = styled.h3`
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 10px;
+  color: #e2e0d0;
 `;
 
 const InfoRow = styled.div`
@@ -47,17 +58,17 @@ const MetaScore = styled.div`
 const GameCard = ({ name, slug, background_image, genres, metacritic }) => {
   return (
     <CardBox bgImage={background_image} height={250}>
-      <Link to={`${ROUTE_GAMES}/${slug}`}>
-        <Body>
-          <Title>{name}</Title>
-          <InfoRow>
-            <GenresList genresList={genres} />
-            {metacritic && (
-              <MetaScore score={metacritic}>{metacritic}</MetaScore>
-            )}
-          </InfoRow>
-        </Body>
-      </Link>
+      <Body>
+        <Link to={`${ROUTE_GAMES}/${slug}`}>
+          <ContentRow>
+            <Title>{name}</Title>
+          </ContentRow>
+        </Link>
+        <InfoRow>
+          <GenresList genresList={genres} />
+          {metacritic && <MetaScore score={metacritic}>{metacritic}</MetaScore>}
+        </InfoRow>
+      </Body>
     </CardBox>
   );
 };
