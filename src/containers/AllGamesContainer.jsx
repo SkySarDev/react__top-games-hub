@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchGames } from "store/reducers/gamesReducer/actions";
+import { fetchGamesList } from "store/reducers/gamesReducer/actions";
 
 import AllGamesPage from "components/pages/AllGamesPage";
 import ContentHeader from "components/UI/ContentHeader";
@@ -11,7 +11,7 @@ const AllGamesContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchGames());
+    dispatch(fetchGamesList());
   }, [dispatch]);
 
   return (

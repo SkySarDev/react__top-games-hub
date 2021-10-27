@@ -2,25 +2,41 @@ import * as types from "./types";
 import axios from "axios";
 import { API_URL } from "utils/constants";
 
-export const loadGamesListStart = () => ({ type: types.LOAD_GAMES_LIST_START });
+export const loadGamesStart = () => ({ type: types.LOAD_GAMES_START });
 
 export const loadGamesListSuccess = (payload) => ({
   type: types.LOAD_GAMES_LIST_SUCCESS,
   payload,
 });
 
-export const loadGamesListError = (payload) => ({
-  type: types.LOAD_GAMES_LIST_ERROR,
+export const loadGameSingleSuccess = (payload) => ({
+  type: types.LOAD_GAME_SINGLE_SUCCESS,
   payload,
 });
 
-export const fetchGames = () => async (dispatch) => {
-  dispatch(loadGamesListStart());
+export const loadGamesError = (payload) => ({
+  type: types.LOAD_GAMES_ERROR,
+  payload,
+});
+
+export const fetchGamesList = () => async (dispatch) => {
+  dispatch(loadGamesStart());
 
   try {
     const response = await axios.get(`${API_URL}/games`);
     dispatch(loadGamesListSuccess(response.data));
   } catch (err) {
-    dispatch(loadGamesListError(err));
+    dispatch(loadGamesError(err));
+  }
+};
+
+export const fetchGameSingle = (game) => async (dispatch) => {
+  dispatch(loadGamesStart());
+
+  try {
+    const response = await axios.get(`${API_URL}/games/${game}`);
+    dispatch(loadGameSingleSuccess(response.data));
+  } catch (err) {
+    dispatch(loadGamesError(err));
   }
 };
