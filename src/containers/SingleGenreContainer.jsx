@@ -25,7 +25,7 @@ const SingleGenreContainer = () => {
       ) : (
         <div>
           <ContentHeader image={bgImage} />
-          <SingleGenrePage data={singleGenre} />
+          <SingleGenrePage {...singleGenre} />
         </div>
       )}
     </>

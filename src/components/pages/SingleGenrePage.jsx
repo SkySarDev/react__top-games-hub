@@ -17,7 +17,14 @@ const ContentTitle = styled.h2`
 
 const Description = styled.p`
   font-size: 18px;
-  line-height: 120%;
+  line-height: 130%;
+  margin-bottom: 20px;
+`;
+
+const GamesCount = styled.p`
+  font-size: 22px;
+  font-weight: bold;
+  color: #999999;
   margin-bottom: 20px;
 `;
 
@@ -27,14 +34,16 @@ const ContentGrid = styled.div`
   grid-gap: 20px;
 `;
 
-const SingleGenrePage = ({ data }) => {
+const SingleGenrePage = ({ name, description, games_count, results }) => {
   return (
-    <MainContentLayout title={data.name}>
+    <MainContentLayout title={name}>
       <Container>
         <ContentTitle>Genre description:</ContentTitle>
-        <Description dangerouslySetInnerHTML={{ __html: data.description }} />
+        <Description dangerouslySetInnerHTML={{ __html: description }} />
+        <ContentTitle>Games count:</ContentTitle>
+        <GamesCount>{games_count}</GamesCount>
         <ContentGrid>
-          {data.results.map((game) => (
+          {results.map((game) => (
             <GameCard key={game.id} {...game} />
           ))}
         </ContentGrid>
@@ -46,5 +55,8 @@ const SingleGenrePage = ({ data }) => {
 export default SingleGenrePage;
 
 SingleGenrePage.propTypes = {
-  data: PropTypes.object.isRequired,
+  description: PropTypes.string.isRequired,
+  games_count: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  results: PropTypes.array.isRequired,
 };
