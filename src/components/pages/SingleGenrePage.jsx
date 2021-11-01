@@ -4,15 +4,10 @@ import styled from "styled-components";
 
 import MainContentLayout from "components/UI/MainContentLayout";
 import GameCard from "components/cards/GameCard";
+import SectionTitle from "components/UI/SectionTitle";
 
 const Container = styled.div`
   padding: 20px;
-`;
-
-const ContentTitle = styled.h2`
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 10px;
 `;
 
 const Description = styled.p`
@@ -38,9 +33,9 @@ const SingleGenrePage = ({ name, description, games_count, results }) => {
   return (
     <MainContentLayout title={name}>
       <Container>
-        <ContentTitle>Genre description:</ContentTitle>
+        <SectionTitle bottom={10}>Genre description</SectionTitle>
         <Description dangerouslySetInnerHTML={{ __html: description }} />
-        <ContentTitle>Games count:</ContentTitle>
+        <SectionTitle bottom={10}>Games count</SectionTitle>
         <GamesCount>{games_count}</GamesCount>
         <ContentGrid>
           {results.map((game) => (
@@ -52,11 +47,11 @@ const SingleGenrePage = ({ name, description, games_count, results }) => {
   );
 };
 
-export default SingleGenrePage;
-
 SingleGenrePage.propTypes = {
   description: PropTypes.string.isRequired,
   games_count: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   results: PropTypes.array.isRequired,
 };
+
+export default SingleGenrePage;
