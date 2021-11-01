@@ -21,7 +21,7 @@ const SingleGameContainer = () => {
       ) : (
         <div>
           <ContentHeader image={bgImage} />
-          <SingleGamePage {...singleGame} />
+          <SingleGamePage gameData={singleGame} />
         </div>
       )}
     </>

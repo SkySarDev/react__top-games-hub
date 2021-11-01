@@ -5,8 +5,8 @@ import styled from "styled-components";
 const Title = styled.h2`
   font-size: 22px;
   font-weight: bold;
-  margin-top: ${({ top }) => top + "px" || 0};
-  margin-bottom: ${({ bottom }) => bottom + "px" || 0};
+  margin-top: ${({ top }) => (top ? top + "px" : 0)};
+  margin-bottom: ${({ bottom }) => (bottom ? bottom + "px" : 0)};
 `;
 
 const SectionTitle = ({ top, bottom, children }) => {
