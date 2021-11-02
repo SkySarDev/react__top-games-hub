@@ -3,8 +3,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import { ROUTE_GENRES } from "utils/constants";
-
 import CardBox from "components/cards/CardBox";
 
 const Body = styled.div`
@@ -35,10 +33,10 @@ const GamesCount = styled.span`
   color: #e2e0d0;
 `;
 
-const GenreCard = ({ slug, name, image_background, games_count }) => {
+const Card = ({ route, slug, name, image_background, games_count }) => {
   return (
     <CardBox bgImage={image_background} height={220}>
-      <Link to={`${ROUTE_GENRES}/${slug}`}>
+      <Link to={`${route}/${slug}`}>
         <Body>
           <Title>{name}</Title>
           <InfoRow>
@@ -50,9 +48,10 @@ const GenreCard = ({ slug, name, image_background, games_count }) => {
   );
 };
 
-export default GenreCard;
+export default Card;
 
-GenreCard.propTypes = {
+Card.propTypes = {
+  route: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   games_count: PropTypes.number.isRequired,
