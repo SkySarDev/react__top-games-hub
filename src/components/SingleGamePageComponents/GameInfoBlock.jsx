@@ -6,16 +6,13 @@ import * as routes from "utils/constants";
 
 import GameInfoParagraph from "components/SingleGamePageComponents/GameInfoParagraph";
 import GameInfoValueList from "components/SingleGamePageComponents/GameInfoValueList";
-import MetacriticScore from "components/UI/MetacriticScore";
 
 const GameInfoBlock = ({
   released,
   website,
-  metacritic,
-  metacritic_url,
   developers,
   publishers,
-  platforms,
+  parent_platforms,
 }) => {
   return (
     <>
@@ -42,18 +39,10 @@ const GameInfoBlock = ({
       <GameInfoParagraph title={"Platforms"}>
         <GameInfoValueList
           route={routes.ROUTE_PLATFORMS}
-          array={platforms}
+          array={parent_platforms}
           objProp={"platform"}
         />
       </GameInfoParagraph>
-
-      {metacritic && metacritic_url && (
-        <GameInfoParagraph title={"Metacritic"}>
-          <a href={metacritic_url}>
-            <MetacriticScore score={metacritic} />
-          </a>
-        </GameInfoParagraph>
-      )}
     </>
   );
 };

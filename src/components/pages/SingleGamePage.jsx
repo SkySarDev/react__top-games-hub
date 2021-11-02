@@ -6,11 +6,19 @@ import MainContentLayout from "components/UI/MainContentLayout";
 import GenresList from "components/UI/GenresList";
 import SectionTitle from "components/UI/SectionTitle";
 import GameInfoBlock from "components/SingleGamePageComponents/GameInfoBlock";
+import MetacriticScore from "components/UI/MetacriticScore";
+import GameScreenshots from "components/SingleGamePageComponents/GameScreenshots";
 
 const BoxInner = styled.div`
   font-size: 18px;
   line-height: 130%;
   padding: 20px;
+`;
+
+const TopGrid = styled.div`
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 30px;
 `;
 
 const Grid = styled.div`
@@ -21,12 +29,20 @@ const Grid = styled.div`
 `;
 
 const SingleGamePage = ({ gameData }) => {
-  const { name, description_raw, genres, screenshots } = gameData;
+  const { name, description_raw, genres, screenshots, metacritic } = gameData;
 
   return (
     <MainContentLayout title={name}>
       <BoxInner>
-        <GenresList genresList={genres} maxWidth={900} />
+        <TopGrid>
+          <GenresList genresList={genres} maxWidth={900} />
+          {metacritic && (
+            <MetacriticScore
+              score={metacritic}
+              options={{ size: 30, fontSize: 18 }}
+            />
+          )}
+        </TopGrid>
         <Grid>
           <div>
             <SectionTitle bottom={10}>Game info</SectionTitle>
@@ -40,16 +56,7 @@ const SingleGamePage = ({ gameData }) => {
         <SectionTitle top={20} bottom={10}>
           Screenshots
         </SectionTitle>
-        {screenshots.map((screenItem) => {
-          return (
-            <img
-              src={screenItem.image}
-              alt={name}
-              key={screenItem.id}
-              width={350}
-            />
-          );
-        })}
+        <GameScreenshots gameName={name} screenshots={screenshots} />
       </BoxInner>
     </MainContentLayout>
   );
