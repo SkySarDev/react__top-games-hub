@@ -12,7 +12,7 @@ const GameInfoBlock = ({
   website,
   developers,
   publishers,
-  parent_platforms,
+  platforms,
 }) => {
   return (
     <>
@@ -39,7 +39,7 @@ const GameInfoBlock = ({
       <GameInfoParagraph title={"Platforms"}>
         <GameInfoValueList
           route={routes.ROUTE_PLATFORMS}
-          array={parent_platforms}
+          array={platforms}
           objProp={"platform"}
         />
       </GameInfoParagraph>
