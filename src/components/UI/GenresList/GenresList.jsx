@@ -7,10 +7,11 @@ import { ROUTE_GENRES } from "utils/constants";
 
 import "./GenresList.css";
 
-const GenresList = ({ genresList }) => {
+const GenresList = ({ genresList, maxWidth }) => {
   return (
     <TruncatedList
       className={"genresList"}
+      style={{ maxWidth }}
       itemClassName={"genreItem"}
       renderTruncator={({ hiddenItemsCount }) => (
         <div className={"genreItem"}>+{hiddenItemsCount}</div>
@@ -32,4 +33,5 @@ export default GenresList;
 
 GenresList.propTypes = {
   genresList: PropTypes.array.isRequired,
+  maxWidth: PropTypes.number.isRequired,
 };

@@ -1,7 +1,6 @@
 .genresList {
   display: flex;
   column-gap: 5px;
-  max-width: 280px;
 }
 
 .genreItem {
