@@ -6,6 +6,7 @@ import AllGenresContainer from "containers/AllGenresContainer";
 import SingleGenreContainer from "containers/SingleGenreContainer";
 import SingleGameContainer from "containers/SingleGameContainer";
 import AllPlatformsContainer from "containers/AllPlatformsContainer";
+import AllDevelopersContainer from "containers/AllDevelopersContainer";
 
 const routesList = [
   {
@@ -36,6 +37,11 @@ const routesList = [
   {
     path: routes.ROUTE_PLATFORMS,
     component: AllPlatformsContainer,
+    exact: true,
+  },
+  {
+    path: routes.ROUTE_DEVELOPERS,
+    component: AllDevelopersContainer,
     exact: true,
   },
 ];

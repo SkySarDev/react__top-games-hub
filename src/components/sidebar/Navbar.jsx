@@ -36,6 +36,9 @@ const Navbar = () => {
       <NavItem>
         <NavLink to={routes.ROUTE_PLATFORMS}>Platforms</NavLink>
       </NavItem>
+      <NavItem>
+        <NavLink to={routes.ROUTE_DEVELOPERS}>Developers</NavLink>
+      </NavItem>
     </ul>
   );
 };
