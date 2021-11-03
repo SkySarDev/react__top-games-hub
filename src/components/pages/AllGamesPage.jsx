@@ -7,7 +7,7 @@ import GameCard from "components/cards/GameCard";
 
 const AllGamesPage = ({ gamesList }) => {
   return (
-    <MainContentLayout title={"All games"}>
+    <MainContentLayout title={"Games"}>
       <ContentGrid>
         {gamesList.map((game) => (
           <GameCard key={game.id} {...game} />

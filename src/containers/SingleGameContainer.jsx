@@ -1,27 +1,30 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchGameSingle } from "store/reducers/gamesReducer/actions";
 import { useParams } from "react-router-dom";
+
+import { fetchContent } from "store/reducers/mainContentReducer/actions";
+import { ROUTE_GAMES } from "utils/constants";
+
 import ContentHeader from "components/UI/ContentHeader";
 import SingleGamePage from "components/pages/SingleGamePage";
 
 const SingleGameContainer = () => {
-  const { singleGame, bgImage, loading } = useSelector((state) => state.games);
+  const { data, bgImage, loading } = useSelector((state) => state.mainContent);
   const dispatch = useDispatch();
   const { slug } = useParams();
 
   useEffect(() => {
-    dispatch(fetchGameSingle(slug));
+    dispatch(fetchContent(ROUTE_GAMES, slug));
   }, [dispatch, slug]);
 
   return (
     <>
-      {loading || !singleGame ? (
+      {loading || !data.game ? (
         <h1>Loading...</h1>
       ) : (
         <div>
           <ContentHeader image={bgImage} />
-          <SingleGamePage gameData={singleGame} />
+          <SingleGamePage gameData={data.game} />
         </div>
       )}
     </>

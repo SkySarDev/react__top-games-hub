@@ -1,30 +1,30 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchGenresList } from "store/reducers/genresReducer/actions";
+import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_GENRES } from "utils/constants";
 
 import ContentHeader from "components/UI/ContentHeader";
 import CardsListPage from "components/pages/CardsListPage";
 
 const AllGenresContainer = () => {
-  const { list, bgImage, loading } = useSelector((state) => state.genres);
+  const { data, bgImage, loading } = useSelector((state) => state.mainContent);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchGenresList());
+    dispatch(fetchContent(ROUTE_GENRES));
   }, [dispatch]);
 
   return (
     <>
-      {loading || !list.length ? (
+      {loading || !data.genres ? (
         <h1>Loading...</h1>
       ) : (
         <div>
           <ContentHeader image={bgImage} />
           <CardsListPage
             title={"Genres"}
-            cardsList={list}
+            cardsList={data.genres}
             route={ROUTE_GENRES}
           />
         </div>
