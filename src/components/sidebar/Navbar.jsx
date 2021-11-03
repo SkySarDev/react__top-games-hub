@@ -28,16 +28,29 @@ const Navbar = () => {
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_GAMES}>Games</NavLink>
+        <NavLink to={routes.ROUTE_GAMES} exact>
+          Games
+        </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_GENRES}>Genres</NavLink>
+        <NavLink to={routes.ROUTE_GENRES} exact>
+          Genres
+        </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_PLATFORMS}>Platforms</NavLink>
+        <NavLink to={routes.ROUTE_PLATFORMS} exact>
+          Platforms
+        </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_DEVELOPERS}>Developers</NavLink>
+        <NavLink to={routes.ROUTE_DEVELOPERS} exact>
+          Developers
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink to={routes.ROUTE_PUBLISHERS} exact>
+          Publishers
+        </NavLink>
       </NavItem>
     </ul>
   );

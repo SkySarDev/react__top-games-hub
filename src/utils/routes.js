@@ -7,6 +7,10 @@ import SingleGenreContainer from "containers/SingleGenreContainer";
 import SingleGameContainer from "containers/SingleGameContainer";
 import AllPlatformsContainer from "containers/AllPlatformsContainer";
 import AllDevelopersContainer from "containers/AllDevelopersContainer";
+import SinglePlatformContainer from "containers/SinglePlatformContainer";
+import SingleDeveloperContainer from "containers/SingleDeveloperContainer";
+import AllPublishersContainer from "containers/AllPublishersContainer";
+import SinglePublisherContainer from "containers/SinglePublisherContainer";
 
 const routesList = [
   {
@@ -40,9 +44,29 @@ const routesList = [
     exact: true,
   },
   {
+    path: routes.ROUTE_SINGLE_PLATFORM,
+    component: SinglePlatformContainer,
+    exact: false,
+  },
+  {
     path: routes.ROUTE_DEVELOPERS,
     component: AllDevelopersContainer,
     exact: true,
+  },
+  {
+    path: routes.ROUTE_SINGLE_DEVELOPER,
+    component: SingleDeveloperContainer,
+    exact: false,
+  },
+  {
+    path: routes.ROUTE_PUBLISHERS,
+    component: AllPublishersContainer,
+    exact: true,
+  },
+  {
+    path: routes.ROUTE_SINGLE_PUBLISHER,
+    component: SinglePublisherContainer,
+    exact: false,
   },
 ];
 
