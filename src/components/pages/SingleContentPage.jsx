@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import MainContentLayout from "components/UI/MainContentLayout";
-import GameCard from "components/cards/GameCard";
 import SectionTitle from "components/UI/SectionTitle";
+import GamesListGrid from "components/blocks/GamesListGrid";
 
 const Container = styled.div`
   padding: 20px;
@@ -23,12 +23,6 @@ const GamesCount = styled.p`
   margin-bottom: 20px;
 `;
 
-const ContentGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-`;
-
 const SingleContentPage = ({ name, description, games_count, results }) => {
   return (
     <MainContentLayout title={name}>
@@ -41,11 +35,7 @@ const SingleContentPage = ({ name, description, games_count, results }) => {
         )}
         <SectionTitle bottom={10}>Games count</SectionTitle>
         <GamesCount>{games_count}</GamesCount>
-        <ContentGrid>
-          {results.map((game) => (
-            <GameCard key={game.id} {...game} />
-          ))}
-        </ContentGrid>
+        <GamesListGrid gamesList={results} />
       </Container>
     </MainContentLayout>
   );

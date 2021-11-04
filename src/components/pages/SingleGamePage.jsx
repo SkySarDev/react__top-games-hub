@@ -19,13 +19,13 @@ const TopGrid = styled.div`
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 30px;
+  margin-bottom: 20px;
 `;
 
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 15px;
-  margin-top: 20px;
 `;
 
 const SingleGamePage = ({ gameData }) => {
@@ -34,15 +34,18 @@ const SingleGamePage = ({ gameData }) => {
   return (
     <MainContentLayout title={name}>
       <BoxInner>
-        <TopGrid>
-          <GenresList genresList={genres} maxWidth={900} />
-          {metacritic && (
-            <MetacriticScore
-              score={metacritic}
-              options={{ size: 30, fontSize: 18 }}
-            />
-          )}
-        </TopGrid>
+        {!!genres.length && (
+          <TopGrid>
+            <GenresList genresList={genres} maxWidth={900} />
+            {metacritic && (
+              <MetacriticScore
+                score={metacritic}
+                options={{ size: 30, fontSize: 18 }}
+              />
+            )}
+          </TopGrid>
+        )}
+
         <Grid>
           <div>
             <SectionTitle bottom={10}>Game info</SectionTitle>

@@ -18,15 +18,19 @@ const Body = styled.div`
   align-content: end;
 `;
 
-const ContentRow = styled.div`
+const ContentGrid = styled.div`
   display: grid;
-  align-content: end;
+  align-content: space-between;
   height: 100%;
 
   &:hover h3 {
     transition: color 0.35s;
     color: #999999;
   }
+`;
+
+const Rating = styled.div`
+  justify-self: end;
 `;
 
 const Title = styled.h3`
@@ -37,23 +41,40 @@ const Title = styled.h3`
 
 const InfoRow = styled.div`
   display: grid;
-  grid-template-columns: 1fr 25px;
+  grid-template-columns: 1fr auto;
+  column-gap: 15px;
   justify-content: space-between;
   align-items: center;
 `;
 
-const GameCard = ({ name, slug, background_image, genres, metacritic }) => {
+const GameCard = ({
+  name,
+  slug,
+  background_image,
+  genres,
+  released,
+  metacritic,
+}) => {
+  const releaseDate = new Date(released).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+
   return (
     <CardBox bgImage={background_image} height={250}>
       <Body>
         <Link to={`${ROUTE_GAMES}/${slug}`}>
-          <ContentRow>
+          <ContentGrid>
+            <Rating>
+              {metacritic && <MetacriticScore score={metacritic} />}
+            </Rating>
             <Title>{name}</Title>
-          </ContentRow>
+          </ContentGrid>
         </Link>
         <InfoRow>
-          <GenresList genresList={genres} maxWidth={280} />
-          {metacritic && <MetacriticScore score={metacritic} />}
+          <GenresList genresList={genres} maxWidth={215} />
+          {releaseDate}
         </InfoRow>
       </Body>
     </CardBox>
@@ -67,5 +88,6 @@ GameCard.propTypes = {
   slug: PropTypes.string.isRequired,
   background_image: PropTypes.string.isRequired,
   genres: PropTypes.array.isRequired,
+  released: PropTypes.string.isRequired,
   metacritic: PropTypes.number,
 };

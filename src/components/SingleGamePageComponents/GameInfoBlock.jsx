@@ -16,45 +16,59 @@ const GameInfoBlock = ({
 }) => {
   return (
     <>
-      <GameInfoParagraph title={"Release date"}>
-        <Link to={`${routes.ROUTE_CALENDAR}/${released},${released}`}>
-          {released}
-        </Link>
-      </GameInfoParagraph>
-
-      {website && (
-        <GameInfoParagraph title={"Website"}>
-          <a href={website}>{website}</a>
+      {released && (
+        <GameInfoParagraph title={"Release date"}>
+          <Link to={`${routes.ROUTE_CALENDAR}/${released}`}>{released}</Link>
         </GameInfoParagraph>
       )}
 
-      <GameInfoParagraph title={"Developers"}>
-        <GameInfoValueList route={routes.ROUTE_DEVELOPERS} array={developers} />
-      </GameInfoParagraph>
+      {website && (
+        <GameInfoParagraph title={"Website"}>
+          <a href={website} target={"_blank"} rel={"noreferrer"}>
+            {website}
+          </a>
+        </GameInfoParagraph>
+      )}
 
-      <GameInfoParagraph title={"Publishers"}>
-        <GameInfoValueList route={routes.ROUTE_PUBLISHERS} array={publishers} />
-      </GameInfoParagraph>
+      {!!developers.length && (
+        <GameInfoParagraph title={"Developers"}>
+          <GameInfoValueList
+            route={routes.ROUTE_DEVELOPERS}
+            array={developers}
+          />
+        </GameInfoParagraph>
+      )}
 
-      <GameInfoParagraph title={"Platforms"}>
-        <GameInfoValueList
-          route={routes.ROUTE_PLATFORMS}
-          array={platforms}
-          objProp={"platform"}
-        />
-      </GameInfoParagraph>
+      {!!publishers.length && (
+        <GameInfoParagraph title={"Publishers"}>
+          <GameInfoValueList
+            route={routes.ROUTE_PUBLISHERS}
+            array={publishers}
+          />
+        </GameInfoParagraph>
+      )}
+
+      {!!platforms.length && (
+        <GameInfoParagraph title={"Platforms"}>
+          <GameInfoValueList
+            route={routes.ROUTE_PLATFORMS}
+            array={platforms}
+            objProp={"platform"}
+          />
+        </GameInfoParagraph>
+      )}
     </>
   );
 };
 
 GameInfoBlock.propTypes = {
-  released: PropTypes.string.isRequired,
+  released: PropTypes.string,
   website: PropTypes.string,
   metacritic: PropTypes.number,
   metacritic_url: PropTypes.string,
-  developers: PropTypes.array.isRequired,
-  publishers: PropTypes.array.isRequired,
-  platforms: PropTypes.array.isRequired,
+  developers: PropTypes.array,
+  publishers: PropTypes.array,
+  platforms: PropTypes.array,
 };
 
 export default GameInfoBlock;

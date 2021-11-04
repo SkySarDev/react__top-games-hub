@@ -13,6 +13,7 @@ const ScoreBox = styled.div(({ score, size = 25, fontSize = 14 }) => ({
   fontSize: fontSize + "px",
   fontWeight: "bold",
   color: "#faf8ea",
+  boxShadow: "0 0 2px 1px rgb(27 27 27 / 35%)",
   backgroundColor: score < 50 ? "#9f0000" : score < 75 ? "#9d7c08" : "#4f972c",
 }));
 
