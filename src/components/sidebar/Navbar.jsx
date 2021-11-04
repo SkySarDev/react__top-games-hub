@@ -38,6 +38,11 @@ const Navbar = () => {
         </NavLink>
       </NavItem>
       <NavItem>
+        <NavLink to={routes.ROUTE_CALENDAR} exact>
+          Calendar
+        </NavLink>
+      </NavItem>
+      <NavItem>
         <NavLink to={routes.ROUTE_PLATFORMS} exact>
           Platforms
         </NavLink>

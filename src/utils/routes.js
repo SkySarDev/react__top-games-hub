@@ -11,6 +11,7 @@ import SinglePlatformContainer from "containers/SinglePlatformContainer";
 import SingleDeveloperContainer from "containers/SingleDeveloperContainer";
 import AllPublishersContainer from "containers/AllPublishersContainer";
 import SinglePublisherContainer from "containers/SinglePublisherContainer";
+import GamesCalendarContainer from "containers/GamesCalendarContainer";
 
 const routesList = [
   {
@@ -66,6 +67,16 @@ const routesList = [
   {
     path: routes.ROUTE_SINGLE_PUBLISHER,
     component: SinglePublisherContainer,
+    exact: false,
+  },
+  {
+    path: routes.ROUTE_CALENDAR,
+    component: GamesCalendarContainer,
+    exact: true,
+  },
+  {
+    path: routes.ROUTE_SINGLE_CALENDAR,
+    component: GamesCalendarContainer,
     exact: false,
   },
 ];
