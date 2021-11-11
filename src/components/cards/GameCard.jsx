@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { ROUTE_GAMES } from "utils/constants";
+import { ROUTE_CALENDAR, ROUTE_GAMES } from "utils/constants";
+import { getShortDateString } from "utils/dateFuncs";
 
 import GenresList from "components/UI/GenresList";
 import CardBox from "components/cards/CardBox";
@@ -45,6 +46,15 @@ const InfoRow = styled.div`
   column-gap: 15px;
   justify-content: space-between;
   align-items: center;
+
+  a {
+    color: #e2e0d0;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #999999;
+    }
+  }
 `;
 
 const GameCard = ({
@@ -55,11 +65,7 @@ const GameCard = ({
   released,
   metacritic,
 }) => {
-  const releaseDate = new Date(released).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  const releaseDateShort = getShortDateString(released);
 
   return (
     <CardBox bgImage={background_image} height={250}>
@@ -74,7 +80,7 @@ const GameCard = ({
         </Link>
         <InfoRow>
           <GenresList genresList={genres} maxWidth={215} />
-          {releaseDate}
+          <Link to={`${ROUTE_CALENDAR}/${released}`}>{releaseDateShort}</Link>
         </InfoRow>
       </Body>
     </CardBox>

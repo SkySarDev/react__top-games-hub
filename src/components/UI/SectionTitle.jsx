@@ -7,6 +7,10 @@ const Title = styled.h2`
   font-weight: bold;
   margin-top: ${({ top }) => (top ? top + "px" : 0)};
   margin-bottom: ${({ bottom }) => (bottom ? bottom + "px" : 0)};
+
+  span {
+    color: #999999;
+  }
 `;
 
 const SectionTitle = ({ top, bottom, children }) => {

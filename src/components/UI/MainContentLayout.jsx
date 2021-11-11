@@ -10,7 +10,8 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   font-size: 30px;
   font-weight: bold;
-  margin-left: 20px;
+  text-shadow: 2px 2px #1b1b1b;
+  margin: 0 0 15px 20px;
 `;
 
 const Body = styled.div`

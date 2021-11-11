@@ -1,76 +1,53 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-import { ROUTE_CALENDAR } from "utils/constants";
 
 import MainContentLayout from "components/UI/MainContentLayout";
 import SectionTitle from "components/UI/SectionTitle";
 import GamesListGrid from "components/blocks/GamesListGrid";
+import ChooseDateBlock from "components/blocks/Calendar/ChooseDateBlock";
 
 const Container = styled.div`
   padding: 20px;
 `;
 
-const MonthsGrid = styled.div`
+const TitleGrid = styled.div`
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-columns: repeat(2, auto);
+  margin-bottom: 20px;
+`;
+
+const DatePickerGrid = styled.div`
   display: flex;
-  column-gap: 10px;
-  margin-bottom: 20px;
-
-  a {
-    transition: all 0.3s;
-    color: #e2e0d0;
-
-    &:hover {
-      color: #999999;
-    }
-  }
-`;
-
-const MonthItem = styled.div`
-  padding: 5px;
+  align-items: center;
+  column-gap: 5px;
   font-size: 18px;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid #59584c;
-  border-radius: 3px;
 `;
 
-const GamesCount = styled.p`
-  font-size: 22px;
-  font-weight: bold;
-  color: #999999;
-  margin-bottom: 20px;
-`;
-
-const GamesCalendarPage = ({ name, games_count, results }) => {
-  const monthsList = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
+const GamesCalendarPage = ({
+  queryDate,
+  name,
+  games_count,
+  results,
+  showChosenDate,
+}) => {
   return (
     <MainContentLayout title={name}>
       <Container>
-        <MonthsGrid>
-          {monthsList.map((month, i) => (
-            <Link to={`${ROUTE_CALENDAR}/${i}`} key={month}>
-              <MonthItem>{month}</MonthItem>
-            </Link>
-          ))}
-        </MonthsGrid>
-        <SectionTitle bottom={10}>Games count</SectionTitle>
-        <GamesCount>{games_count}</GamesCount>
+        <TitleGrid>
+          <SectionTitle>
+            Games count: <span>{games_count}</span>
+          </SectionTitle>
+          <DatePickerGrid>
+            Choose date:
+            <ChooseDateBlock
+              dateObj={queryDate}
+              showChosenDate={showChosenDate}
+            />
+          </DatePickerGrid>
+        </TitleGrid>
         <GamesListGrid gamesList={results} />
       </Container>
     </MainContentLayout>
@@ -78,9 +55,11 @@ const GamesCalendarPage = ({ name, games_count, results }) => {
 };
 
 GamesCalendarPage.propTypes = {
-  games_count: PropTypes.number.isRequired,
+  queryDate: PropTypes.object,
   name: PropTypes.string.isRequired,
+  games_count: PropTypes.number.isRequired,
   results: PropTypes.array.isRequired,
+  showChosenDate: PropTypes.func.isRequired,
 };
 
 export default GamesCalendarPage;
