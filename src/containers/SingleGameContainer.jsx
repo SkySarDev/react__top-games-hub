@@ -14,7 +14,7 @@ const SingleGameContainer = () => {
   const { slug } = useParams();
 
   useEffect(() => {
-    dispatch(fetchContent(ROUTE_GAMES, slug));
+    dispatch(fetchContent(`${ROUTE_GAMES}/${slug}`));
   }, [dispatch, slug]);
 
   return (

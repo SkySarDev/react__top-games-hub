@@ -25,7 +25,7 @@ const AllPublishersContainer = () => {
           <CardsListPage
             title={"Publishers"}
             cardsList={data.publishers}
-            route={ROUTE_PUBLISHERS}
+            queryParam={"publishers"}
           />
         </div>
       )}

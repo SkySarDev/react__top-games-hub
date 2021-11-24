@@ -16,6 +16,7 @@ const Container = styled.div`
 const DisplayChosenDate = styled(BlankWrapper)`
   padding: 5px 10px;
   cursor: pointer;
+  transition: color 0.3s;
 
   &:hover {
     color: #999999;
@@ -26,7 +27,7 @@ const DatePickerOverlay = styled.div`
   position: absolute;
   z-index: 100;
   top: 35px;
-  right: 0;
+  left: 0;
   display: none;
 
   &.active {
@@ -73,7 +74,7 @@ const ChooseDateBlock = ({ dateObj, showChosenDate }) => {
       {date.length && (
         <Container>
           <DisplayChosenDate onClick={showDatePicker}>
-            {getDateRangeString(date[0], "short")}
+            Choose date: {getDateRangeString(date[0], "short")}
           </DisplayChosenDate>
 
           <DatePickerOverlay className={`${overlayActive ? " active" : ""}`}>

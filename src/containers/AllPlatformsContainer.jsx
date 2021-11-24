@@ -25,7 +25,7 @@ const AllPlatformsContainer = () => {
           <CardsListPage
             title={"Platforms"}
             cardsList={data.platforms}
-            route={ROUTE_PLATFORMS}
+            queryParam={"platforms"}
           />
         </div>
       )}

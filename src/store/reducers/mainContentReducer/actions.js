@@ -17,16 +17,14 @@ export const loadContentError = (payload) => ({
   payload,
 });
 
-export const fetchContent =
-  (category, slug = "") =>
-  async (dispatch) => {
-    dispatch(loadContentStart());
+export const fetchContent = (queryParams) => async (dispatch) => {
+  dispatch(loadContentStart());
 
-    try {
-      const response = await axios.get(`${API_URL}${category}/${slug}`);
+  try {
+    const response = await axios.get(API_URL + queryParams);
 
-      dispatch(loadContentSuccess(response.data));
-    } catch (err) {
-      dispatch(loadContentError(err));
-    }
-  };
+    dispatch(loadContentSuccess(response.data));
+  } catch (err) {
+    dispatch(loadContentError(err));
+  }
+};

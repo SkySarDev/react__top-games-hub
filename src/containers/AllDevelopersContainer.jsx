@@ -25,7 +25,7 @@ const AllDevelopersContainer = () => {
           <CardsListPage
             title={"Developers"}
             cardsList={data.developers}
-            route={ROUTE_DEVELOPERS}
+            queryParam={"developers"}
           />
         </div>
       )}

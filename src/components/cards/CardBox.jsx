@@ -53,6 +53,11 @@ const Hover = styled.div`
     background-color: rgba(27, 27, 27, 85%);
     background-image: url(${eyeIcon});
     background-size: 70px;
+
+    h3 {
+      transition: color 0.35s;
+      color: #999999;
+    }
   }
 `;
 

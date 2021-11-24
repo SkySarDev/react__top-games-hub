@@ -32,26 +32,20 @@ const GameInfoBlock = ({
 
       {!!developers.length && (
         <GameInfoParagraph title={"Developers"}>
-          <GameInfoValueList
-            route={routes.ROUTE_DEVELOPERS}
-            array={developers}
-          />
+          <GameInfoValueList queryParam={"developers"} array={developers} />
         </GameInfoParagraph>
       )}
 
       {!!publishers.length && (
         <GameInfoParagraph title={"Publishers"}>
-          <GameInfoValueList
-            route={routes.ROUTE_PUBLISHERS}
-            array={publishers}
-          />
+          <GameInfoValueList queryParam={"publishers"} array={publishers} />
         </GameInfoParagraph>
       )}
 
       {!!platforms.length && (
         <GameInfoParagraph title={"Platforms"}>
           <GameInfoValueList
-            route={routes.ROUTE_PLATFORMS}
+            queryParam={"platforms"}
             array={platforms}
             objProp={"platform"}
           />
