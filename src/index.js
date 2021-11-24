@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { store } from "store/store";
 
@@ -10,10 +10,10 @@ import App from "components/App";
 import "./index.css";
 
 ReactDOM.render(
-  <Router>
+  <BrowserRouter>
     <Provider store={store}>
       <App />
     </Provider>
-  </Router>,
+  </BrowserRouter>,
   document.getElementById("root")
 );

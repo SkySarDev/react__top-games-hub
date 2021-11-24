@@ -25,7 +25,7 @@ const AllGenresContainer = () => {
           <CardsListPage
             title={"Genres"}
             cardsList={data.genres}
-            route={ROUTE_GENRES}
+            queryParam={"genres"}
           />
         </div>
       )}

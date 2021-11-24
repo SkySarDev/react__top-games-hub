@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import CardBox from "components/cards/CardBox";
+import { ROUTE_GAMES } from "utils/constants";
 
 const Body = styled.div`
   position: relative;
@@ -33,10 +34,10 @@ const GamesCount = styled.span`
   color: #e2e0d0;
 `;
 
-const Card = ({ route, slug, name, image_background, games_count }) => {
+const Card = ({ id, name, image_background, games_count, queryParam }) => {
   return (
     <CardBox bgImage={image_background} height={220}>
-      <Link to={`${route}/${slug}`}>
+      <Link to={`${ROUTE_GAMES}?${queryParam}=${id}`}>
         <Body>
           <Title>{name}</Title>
           <InfoRow>
@@ -51,9 +52,9 @@ const Card = ({ route, slug, name, image_background, games_count }) => {
 export default Card;
 
 Card.propTypes = {
-  route: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
   games_count: PropTypes.number.isRequired,
   image_background: PropTypes.string.isRequired,
+  queryParam: PropTypes.string.isRequired,
 };

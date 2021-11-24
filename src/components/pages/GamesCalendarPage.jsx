@@ -3,20 +3,11 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import MainContentLayout from "components/UI/MainContentLayout";
-import SectionTitle from "components/UI/SectionTitle";
-import GamesListGrid from "components/blocks/GamesListGrid";
+import GamesListBlock from "components/blocks/GamesListBlock";
 import ChooseDateBlock from "components/blocks/Calendar/ChooseDateBlock";
 
 const Container = styled.div`
   padding: 20px;
-`;
-
-const TitleGrid = styled.div`
-  display: grid;
-  align-items: center;
-  justify-content: space-between;
-  grid-template-columns: repeat(2, auto);
-  margin-bottom: 20px;
 `;
 
 const DatePickerGrid = styled.div`
@@ -24,6 +15,7 @@ const DatePickerGrid = styled.div`
   align-items: center;
   column-gap: 5px;
   font-size: 18px;
+  margin-bottom: 20px;
 `;
 
 const GamesCalendarPage = ({
@@ -36,19 +28,14 @@ const GamesCalendarPage = ({
   return (
     <MainContentLayout title={name}>
       <Container>
-        <TitleGrid>
-          <SectionTitle>
-            Games count: <span>{games_count}</span>
-          </SectionTitle>
-          <DatePickerGrid>
-            Choose date:
-            <ChooseDateBlock
-              dateObj={queryDate}
-              showChosenDate={showChosenDate}
-            />
-          </DatePickerGrid>
-        </TitleGrid>
-        <GamesListGrid gamesList={results} />
+        <DatePickerGrid>
+          <ChooseDateBlock
+            dateObj={queryDate}
+            showChosenDate={showChosenDate}
+          />
+        </DatePickerGrid>
+
+        <GamesListBlock gamesList={results} games_count={games_count} />
       </Container>
     </MainContentLayout>
   );

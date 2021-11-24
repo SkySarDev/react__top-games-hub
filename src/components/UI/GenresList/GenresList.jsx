@@ -3,7 +3,7 @@ import TruncatedList from "react-truncate-list";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { ROUTE_GENRES } from "utils/constants";
+import { ROUTE_GAMES } from "utils/constants";
 
 import "./GenresList.css";
 
@@ -18,9 +18,9 @@ const GenresList = ({ genresList, maxWidth }) => {
       )}
     >
       {genresList.map((genreItem) => {
-        const { id, slug, name } = genreItem;
+        const { id, name } = genreItem;
         return (
-          <Link key={id} to={`${ROUTE_GENRES}/${slug}`}>
+          <Link key={id} to={`${ROUTE_GAMES}?genres=${id}`}>
             {name}
           </Link>
         );

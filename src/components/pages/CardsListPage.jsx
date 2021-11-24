@@ -5,12 +5,12 @@ import Card from "components/cards/Card";
 import MainContentLayout from "components/UI/MainContentLayout";
 import ContentGrid from "components/UI/ContentGrid";
 
-const CardsListPage = ({ title, cardsList, route }) => {
+const CardsListPage = ({ title, cardsList, queryParam }) => {
   return (
     <MainContentLayout title={title}>
       <ContentGrid>
         {cardsList.map((cardItem) => (
-          <Card key={cardItem.id} {...cardItem} route={route} />
+          <Card key={cardItem.id} {...cardItem} queryParam={queryParam} />
         ))}
       </ContentGrid>
     </MainContentLayout>
@@ -20,7 +20,7 @@ const CardsListPage = ({ title, cardsList, route }) => {
 CardsListPage.propTypes = {
   title: PropTypes.string.isRequired,
   cardsList: PropTypes.array.isRequired,
-  route: PropTypes.string.isRequired,
+  queryParam: PropTypes.string.isRequired,
 };
 
 export default CardsListPage;

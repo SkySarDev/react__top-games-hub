@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_CALENDAR } from "utils/constants";
@@ -16,7 +16,7 @@ import {
 const GamesCalendarContainer = () => {
   const { data, bgImage, loading } = useSelector((state) => state.mainContent);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { slug } = useParams();
   const [queryDate, setQueryDate] = useState({});
 
@@ -42,7 +42,7 @@ const GamesCalendarContainer = () => {
   const showChosenDate = (valueDate) => {
     const chosenDateQuery = getDateRangeString(valueDate, "calendar");
 
-    history.push(`${ROUTE_CALENDAR}/${chosenDateQuery}`);
+    navigate(`${ROUTE_CALENDAR}/${chosenDateQuery}`);
   };
 
   return (

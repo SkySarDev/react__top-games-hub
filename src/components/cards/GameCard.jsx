@@ -65,7 +65,7 @@ const GameCard = ({
   released,
   metacritic,
 }) => {
-  const releaseDateShort = getShortDateString(released);
+  const releaseDateShort = released ? getShortDateString(released) : null;
 
   return (
     <CardBox bgImage={background_image} height={250}>
@@ -80,7 +80,9 @@ const GameCard = ({
         </Link>
         <InfoRow>
           <GenresList genresList={genres} maxWidth={215} />
-          <Link to={`${ROUTE_CALENDAR}/${released}`}>{releaseDateShort}</Link>
+          {released && (
+            <Link to={`${ROUTE_CALENDAR}/${released}`}>{releaseDateShort}</Link>
+          )}
         </InfoRow>
       </Body>
     </CardBox>
@@ -94,6 +96,6 @@ GameCard.propTypes = {
   slug: PropTypes.string.isRequired,
   background_image: PropTypes.string.isRequired,
   genres: PropTypes.array.isRequired,
-  released: PropTypes.string.isRequired,
+  released: PropTypes.string,
   metacritic: PropTypes.number,
 };
