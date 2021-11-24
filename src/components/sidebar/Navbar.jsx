@@ -23,39 +23,25 @@ const Navbar = () => {
   return (
     <ul>
       <NavItem>
-        <NavLink to={routes.ROUTE_HOME} exact>
-          Home
-        </NavLink>
+        <NavLink to={routes.ROUTE_HOME}>Home</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_GAMES} exact>
-          Games
-        </NavLink>
+        <NavLink to={routes.ROUTE_GAMES}>Games</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_GENRES} exact>
-          Genres
-        </NavLink>
+        <NavLink to={routes.ROUTE_GENRES}>Genres</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_CALENDAR} exact>
-          Calendar
-        </NavLink>
+        <NavLink to={routes.ROUTE_CALENDAR}>Calendar</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_PLATFORMS} exact>
-          Platforms
-        </NavLink>
+        <NavLink to={routes.ROUTE_PLATFORMS}>Platforms</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_DEVELOPERS} exact>
-          Developers
-        </NavLink>
+        <NavLink to={routes.ROUTE_DEVELOPERS}>Developers</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_PUBLISHERS} exact>
-          Publishers
-        </NavLink>
+        <NavLink to={routes.ROUTE_PUBLISHERS}>Publishers</NavLink>
       </NavItem>
     </ul>
   );
