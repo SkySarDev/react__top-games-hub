@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_PUBLISHERS } from "utils/constants";
 
-import ContentHeader from "components/UI/ContentHeader";
 import CardsListPage from "components/pages/CardsListPage";
 
 const AllPublishersContainer = () => {
-  const { data, bgImage, loading } = useSelector((state) => state.mainContent);
+  const { data, loading } = useSelector((state) => state.mainContent);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,20 +15,11 @@ const AllPublishersContainer = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {loading || !data.publishers ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div>
-          <ContentHeader image={bgImage} />
-          <CardsListPage
-            title={"Publishers"}
-            cardsList={data.publishers}
-            queryParam={"publishers"}
-          />
-        </div>
-      )}
-    </>
+    <CardsListPage
+      isLoading={loading}
+      data={data.publishers}
+      queryParam={"publishers"}
+    />
   );
 };
 

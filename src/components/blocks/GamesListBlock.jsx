@@ -20,7 +20,7 @@ const TitleGrid = styled.div`
   margin-bottom: 20px;
 `;
 
-const GamesListBlock = ({ gamesList, games_count }) => {
+const GamesListBlock = ({ results, games_count }) => {
   return (
     <>
       <TitleGrid>
@@ -32,7 +32,7 @@ const GamesListBlock = ({ gamesList, games_count }) => {
       </TitleGrid>
 
       <GamesListGrid>
-        {gamesList.map((game) => (
+        {results.map((game) => (
           <GameCard key={game.id} {...game} />
         ))}
       </GamesListGrid>
@@ -41,7 +41,7 @@ const GamesListBlock = ({ gamesList, games_count }) => {
 };
 
 GamesListBlock.propTypes = {
-  gamesList: PropTypes.array.isRequired,
+  results: PropTypes.array.isRequired,
   games_count: PropTypes.number.isRequired,
 };
 

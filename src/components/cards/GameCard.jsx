@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { ROUTE_CALENDAR, ROUTE_GAMES } from "utils/constants";
+import { ROUTE_RELEASE_CALENDAR, ROUTE_GAMES } from "utils/constants";
 import { getShortDateString } from "utils/dateFuncs";
 
 import GenresList from "components/UI/GenresList";
@@ -81,7 +81,9 @@ const GameCard = ({
         <InfoRow>
           <GenresList genresList={genres} maxWidth={215} />
           {released && (
-            <Link to={`${ROUTE_CALENDAR}/${released}`}>{releaseDateShort}</Link>
+            <Link to={`${ROUTE_RELEASE_CALENDAR}/${released}`}>
+              {releaseDateShort}
+            </Link>
           )}
         </InfoRow>
       </Body>

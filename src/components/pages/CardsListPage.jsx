@@ -1,26 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import Card from "components/cards/Card";
 import MainContentLayout from "components/UI/MainContentLayout";
 import ContentGrid from "components/UI/ContentGrid";
 
-const CardsListPage = ({ title, cardsList, queryParam }) => {
+const CardsListPage = ({ isLoading, queryParam, data }) => {
+  const [content, setContent] = useState({ noContent: true, title: "Loading" });
+
+  useEffect(() => {
+    if (data) {
+      setContent(data);
+    }
+  }, [data]);
+
   return (
-    <MainContentLayout title={title}>
+    <MainContentLayout title={content.title}>
       <ContentGrid>
-        {cardsList.map((cardItem) => (
-          <Card key={cardItem.id} {...cardItem} queryParam={queryParam} />
-        ))}
+        {isLoading || content.noContent ? (
+          <div>Loading...</div>
+        ) : (
+          <>
+            {content.results.map((cardItem) => (
+              <Card key={cardItem.id} {...cardItem} queryParam={queryParam} />
+            ))}
+          </>
+        )}
       </ContentGrid>
     </MainContentLayout>
   );
 };
 
 CardsListPage.propTypes = {
-  title: PropTypes.string.isRequired,
-  cardsList: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   queryParam: PropTypes.string.isRequired,
+  data: PropTypes.object,
 };
 
 export default CardsListPage;

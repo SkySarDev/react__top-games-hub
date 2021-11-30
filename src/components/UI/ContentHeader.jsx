@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import defaultHeaderImg from "images/default-header-image.jpg";
+
 const Header = styled.header`
   position: fixed;
   top: 15px;
   width: 1100px;
   height: 619px;
-  background-image: url(${(props) => props.image});
+  background-image: url(${(props) => props.headerImage});
   background-position: center;
   background-size: cover;
 
@@ -33,11 +35,13 @@ const Header = styled.header`
 `;
 
 const ContentHeader = ({ image }) => {
-  return <Header image={image} />;
+  const headerImg = image || defaultHeaderImg;
+
+  return <Header headerImage={headerImg} />;
 };
 
 ContentHeader.propTypes = {
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
 };
 
 export default ContentHeader;

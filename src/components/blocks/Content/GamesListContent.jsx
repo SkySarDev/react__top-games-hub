@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -25,31 +25,49 @@ const TitleGrid = styled.div`
   margin-bottom: 20px;
 `;
 
-const GamesListContent = ({ title, games_count, results }) => {
-  return (
-    <MainContentLayout title={title}>
-      <Container>
-        <TitleGrid>
-          <SectionTitle>
-            Games count: <span>{games_count.toLocaleString("en-US")}</span>
-          </SectionTitle>
-          <GamesFilterBlock />
-        </TitleGrid>
+const GamesListContent = ({ isLoading, data }) => {
+  const [content, setContent] = useState({ noContent: true });
 
-        <GamesListGrid>
-          {results.map((game) => (
-            <GameCard key={game.id} {...game} />
-          ))}
-        </GamesListGrid>
-      </Container>
-    </MainContentLayout>
+  useEffect(() => {
+    if (data) {
+      setContent(data);
+    }
+  }, [data]);
+
+  return (
+    <>
+      {isLoading || content.noContent ? (
+        <MainContentLayout title={"Loading..."}>
+          <Container>
+            <TitleGrid>Loading...</TitleGrid>
+          </Container>
+        </MainContentLayout>
+      ) : (
+        <MainContentLayout title={content.title}>
+          <Container>
+            <TitleGrid>
+              <SectionTitle>
+                Games count:{" "}
+                <span>{content.games_count.toLocaleString("en-US")}</span>
+              </SectionTitle>
+              <GamesFilterBlock />
+            </TitleGrid>
+
+            <GamesListGrid>
+              {content.results.map((game) => (
+                <GameCard key={game.id} {...game} />
+              ))}
+            </GamesListGrid>
+          </Container>
+        </MainContentLayout>
+      )}
+    </>
   );
 };
 
 GamesListContent.propTypes = {
-  games_count: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  results: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  data: PropTypes.object,
 };
 
 export default GamesListContent;

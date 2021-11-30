@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_PLATFORMS } from "utils/constants";
 
-import ContentHeader from "components/UI/ContentHeader";
 import CardsListPage from "components/pages/CardsListPage";
 
 const AllPlatformsContainer = () => {
-  const { data, bgImage, loading } = useSelector((state) => state.mainContent);
+  const { data, loading } = useSelector((state) => state.mainContent);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,20 +15,11 @@ const AllPlatformsContainer = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {loading || !data.platforms ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div>
-          <ContentHeader image={bgImage} />
-          <CardsListPage
-            title={"Platforms"}
-            cardsList={data.platforms}
-            queryParam={"platforms"}
-          />
-        </div>
-      )}
-    </>
+    <CardsListPage
+      isLoading={loading}
+      data={data.platforms}
+      queryParam={"platforms"}
+    />
   );
 };
 

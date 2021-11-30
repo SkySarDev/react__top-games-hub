@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_GENRES } from "utils/constants";
 
-import ContentHeader from "components/UI/ContentHeader";
 import CardsListPage from "components/pages/CardsListPage";
 
 const AllGenresContainer = () => {
-  const { data, bgImage, loading } = useSelector((state) => state.mainContent);
+  const { data, loading } = useSelector((state) => state.mainContent);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,20 +15,11 @@ const AllGenresContainer = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {loading || !data.genres ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div>
-          <ContentHeader image={bgImage} />
-          <CardsListPage
-            title={"Genres"}
-            cardsList={data.genres}
-            queryParam={"genres"}
-          />
-        </div>
-      )}
-    </>
+    <CardsListPage
+      isLoading={loading}
+      data={data.genres}
+      queryParam={"genres"}
+    />
   );
 };
 

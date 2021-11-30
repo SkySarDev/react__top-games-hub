@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Sidebar from "components/sidebar/Sidebar";
-
 const Container = styled.div`
   max-width: 1440px;
   padding: 15px;
@@ -18,16 +16,13 @@ const Grid = styled.div`
 const Layout = ({ children }) => {
   return (
     <Container>
-      <Grid>
-        <Sidebar />
-        {children}
-      </Grid>
+      <Grid>{children}</Grid>
     </Container>
   );
 };
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

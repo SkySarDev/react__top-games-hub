@@ -41,7 +41,8 @@ const Card = ({ id, name, image_background, games_count, queryParam }) => {
         <Body>
           <Title>{name}</Title>
           <InfoRow>
-            Games count: <GamesCount>{games_count}</GamesCount>
+            Games count:{" "}
+            <GamesCount>{games_count.toLocaleString("en-US")}</GamesCount>
           </InfoRow>
         </Body>
       </Link>

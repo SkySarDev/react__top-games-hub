@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import eyeIcon from "image/icons/eye-preview.svg";
+import eyeIcon from "images/icons/eye-preview.svg";
 
 const Wrapper = styled.div`
   position: relative;

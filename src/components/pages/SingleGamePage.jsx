@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import MainContentLayout from "components/UI/MainContentLayout";
 import GenresList from "components/UI/GenresList";
 import SectionTitle from "components/UI/SectionTitle";
-import GameInfoBlock from "components/SingleGamePageComponents/GameInfoBlock";
+import GameInfoBlock from "components/blocks/SingleGamePageComponents/GameInfoBlock";
 import MetacriticScore from "components/UI/MetacriticScore";
-import GameScreenshots from "components/SingleGamePageComponents/GameScreenshots";
+import GameScreenshots from "components/blocks/SingleGamePageComponents/GameScreenshots";
 
 const BoxInner = styled.div`
   font-size: 18px;
@@ -28,45 +28,68 @@ const Grid = styled.div`
   column-gap: 15px;
 `;
 
-const SingleGamePage = ({ gameData }) => {
-  const { name, description_raw, genres, screenshots, metacritic } = gameData;
+const SingleGamePage = ({ isLoading, gameData }) => {
+  const [gameContent, setGameContent] = useState({ noContent: true });
+
+  useEffect(() => {
+    if (gameData) {
+      setGameContent(gameData);
+    }
+  }, [gameData]);
 
   return (
-    <MainContentLayout title={name}>
-      <BoxInner>
-        {!!genres.length && (
-          <TopGrid>
-            <GenresList genresList={genres} maxWidth={900} />
-            {metacritic && (
-              <MetacriticScore
-                score={metacritic}
-                options={{ size: 30, fontSize: 18 }}
-              />
+    <>
+      {isLoading || gameContent.noContent ? (
+        <MainContentLayout title={"Loading..."}>
+          <BoxInner>Loading...</BoxInner>
+        </MainContentLayout>
+      ) : (
+        <MainContentLayout title={gameContent.name}>
+          <BoxInner>
+            {!!gameContent.genres.length && (
+              <TopGrid>
+                <GenresList genresList={gameContent.genres} maxWidth={900} />
+                {gameContent.metacritic && (
+                  <MetacriticScore
+                    score={gameContent.metacritic}
+                    options={{ size: 30, fontSize: 18 }}
+                  />
+                )}
+              </TopGrid>
             )}
-          </TopGrid>
-        )}
 
-        <Grid>
-          <div>
-            <SectionTitle bottom={10}>Game info</SectionTitle>
-            <GameInfoBlock {...gameData} />
-          </div>
-          <div>
-            <SectionTitle bottom={10}>Description</SectionTitle>
-            <p>{description_raw}</p>
-          </div>
-        </Grid>
-        <SectionTitle top={20} bottom={10}>
-          Screenshots
-        </SectionTitle>
-        <GameScreenshots gameName={name} screenshots={screenshots} />
-      </BoxInner>
-    </MainContentLayout>
+            <Grid>
+              <div>
+                <SectionTitle bottom={10}>Game info</SectionTitle>
+                <GameInfoBlock {...gameContent} />
+              </div>
+              <div>
+                <SectionTitle bottom={10}>Description</SectionTitle>
+                <p>{gameContent.description_raw || gameContent.description}</p>
+              </div>
+            </Grid>
+
+            {!!gameContent.screenshots.length && (
+              <>
+                <SectionTitle top={20} bottom={10}>
+                  Screenshots
+                </SectionTitle>
+                <GameScreenshots
+                  gameName={gameContent.name}
+                  screenshots={gameContent.screenshots}
+                />
+              </>
+            )}
+          </BoxInner>
+        </MainContentLayout>
+      )}
+    </>
   );
 };
 
 export default SingleGamePage;
 
 SingleGamePage.propTypes = {
-  gameData: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  gameData: PropTypes.object,
 };

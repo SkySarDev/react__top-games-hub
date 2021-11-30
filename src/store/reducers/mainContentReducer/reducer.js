@@ -1,8 +1,9 @@
 import * as types from "./types";
 
 const initialState = {
-  data: {},
-  bgImage: null,
+  data: {
+    backgroundImg: null,
+  },
   loading: false,
   error: false,
 };
@@ -13,14 +14,13 @@ const mainContentReducer = (state = initialState, action) => {
       return { ...state, loading: true };
 
     case types.LOAD_CONTENT_SUCCESS: {
-      const { data, bgImage } = action.payload;
+      const { data } = action.payload;
 
       return {
         ...state,
         loading: false,
         error: false,
         data,
-        bgImage,
       };
     }
 

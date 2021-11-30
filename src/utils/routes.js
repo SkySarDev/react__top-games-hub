@@ -7,7 +7,7 @@ import SingleGameContainer from "containers/SingleGameContainer";
 import AllPlatformsContainer from "containers/AllPlatformsContainer";
 import AllDevelopersContainer from "containers/AllDevelopersContainer";
 import AllPublishersContainer from "containers/AllPublishersContainer";
-import GamesCalendarContainer from "containers/GamesCalendarContainer";
+import ReleaseCalendarContainer from "containers/ReleaseCalendarContainer";
 
 const routesList = [
   {
@@ -43,12 +43,12 @@ const routesList = [
     element: <AllPublishersContainer />,
   },
   {
-    path: routes.ROUTE_CALENDAR,
-    element: <GamesCalendarContainer />,
+    path: routes.ROUTE_RELEASE_CALENDAR,
+    element: <ReleaseCalendarContainer />,
   },
   {
-    path: routes.ROUTE_SINGLE_CALENDAR,
-    element: <GamesCalendarContainer />,
+    path: routes.ROUTE_SINGLE_RELEASE_CALENDAR,
+    element: <ReleaseCalendarContainer />,
   },
 ];
 

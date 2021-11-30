@@ -32,7 +32,7 @@ const Navbar = () => {
         <NavLink to={routes.ROUTE_GENRES}>Genres</NavLink>
       </NavItem>
       <NavItem>
-        <NavLink to={routes.ROUTE_CALENDAR}>Calendar</NavLink>
+        <NavLink to={routes.ROUTE_RELEASE_CALENDAR}>Calendar</NavLink>
       </NavItem>
       <NavItem>
         <NavLink to={routes.ROUTE_PLATFORMS}>Platforms</NavLink>

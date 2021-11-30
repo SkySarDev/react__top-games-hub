@@ -3,18 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
-import { ROUTE_CALENDAR } from "utils/constants";
+import { ROUTE_RELEASE_CALENDAR } from "utils/constants";
 
-import ContentHeader from "components/UI/ContentHeader";
-import GamesCalendarPage from "components/pages/GamesCalendarPage";
+import ReleaseCalendarPage from "components/pages/ReleaseCalendarPage";
 import {
   getDefaultDateRange,
   getDateRangeString,
   getRequestDateRange,
 } from "utils/dateFuncs";
 
-const GamesCalendarContainer = () => {
-  const { data, bgImage, loading } = useSelector((state) => state.mainContent);
+const ReleaseCalendarContainer = () => {
+  const { data, loading } = useSelector((state) => state.mainContent);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { slug } = useParams();
@@ -33,8 +32,7 @@ const GamesCalendarContainer = () => {
 
     dispatch(
       fetchContent(
-        ROUTE_CALENDAR,
-        `${requestDate.startDate},${requestDate.endDate}`
+        `${ROUTE_RELEASE_CALENDAR}/${requestDate.startDate},${requestDate.endDate}`
       )
     );
   }, [dispatch, slug]);
@@ -42,25 +40,17 @@ const GamesCalendarContainer = () => {
   const showChosenDate = (valueDate) => {
     const chosenDateQuery = getDateRangeString(valueDate, "calendar");
 
-    navigate(`${ROUTE_CALENDAR}/${chosenDateQuery}`);
+    navigate(`${ROUTE_RELEASE_CALENDAR}/${chosenDateQuery}`);
   };
 
   return (
-    <>
-      {loading || !data.calendar ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div>
-          <ContentHeader image={bgImage} />
-          <GamesCalendarPage
-            {...data.calendar}
-            queryDate={queryDate}
-            showChosenDate={showChosenDate}
-          />
-        </div>
-      )}
-    </>
+    <ReleaseCalendarPage
+      isLoading={loading}
+      data={data.releaseCalendar}
+      queryDate={queryDate}
+      showChosenDate={showChosenDate}
+    />
   );
 };
 
-export default GamesCalendarContainer;
+export default ReleaseCalendarContainer;
