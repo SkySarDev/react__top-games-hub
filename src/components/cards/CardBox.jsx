@@ -3,10 +3,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import eyeIcon from "images/icons/eye-preview.svg";
+import cardNoImage from "images/card-no-image.png";
 
 const Wrapper = styled.div`
   position: relative;
-  height: ${({ height }) => (height ? height + "px" : "auto")};
+  height: ${({ height }) => `${height}px` || "auto"};
   border: 1px solid #59584c;
   border-radius: 5px;
 `;
@@ -15,7 +16,7 @@ const Background = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url(${({ image }) => image});
+  background-image: url(${({ image }) => image || cardNoImage});
   background-position: center;
   background-size: cover;
   border-radius: 5px;
@@ -74,6 +75,6 @@ const CardBox = ({ bgImage, height, children }) => {
 export default CardBox;
 
 CardBox.propTypes = {
-  bgImage: PropTypes.string.isRequired,
+  bgImage: PropTypes.string,
   height: PropTypes.number,
 };

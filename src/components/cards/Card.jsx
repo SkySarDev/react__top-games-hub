@@ -13,11 +13,6 @@ const Body = styled.div`
   height: 100%;
   padding: 15px;
   color: #e2e0d0;
-  //
-  //&:hover h3 {
-  //  transition: color 0.3s;
-  //  color: #999999;
-  //}
 `;
 
 const Title = styled.h3`
@@ -61,6 +56,6 @@ Card.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   games_count: PropTypes.number.isRequired,
-  image_background: PropTypes.string.isRequired,
+  image_background: PropTypes.string,
   queryParam: PropTypes.string.isRequired,
 };

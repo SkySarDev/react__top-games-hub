@@ -96,7 +96,7 @@ export default GameCard;
 GameCard.propTypes = {
   name: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
-  background_image: PropTypes.string.isRequired,
+  background_image: PropTypes.string,
   genres: PropTypes.array.isRequired,
   released: PropTypes.string,
   metacritic: PropTypes.number,
