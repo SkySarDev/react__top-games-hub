@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_RELEASE_CALENDAR } from "utils/constants";
@@ -17,6 +17,7 @@ const ReleaseCalendarContainer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { slug } = useParams();
+  const { search } = useLocation();
   const [queryDate, setQueryDate] = useState({});
 
   useEffect(() => {
@@ -32,15 +33,15 @@ const ReleaseCalendarContainer = () => {
 
     dispatch(
       fetchContent(
-        `${ROUTE_RELEASE_CALENDAR}/${requestDate.startDate},${requestDate.endDate}`
+        `${ROUTE_RELEASE_CALENDAR}/${requestDate.startDate},${requestDate.endDate}${search}`
       )
     );
-  }, [dispatch, slug]);
+  }, [dispatch, slug, search]);
 
   const showChosenDate = (valueDate) => {
     const chosenDateQuery = getDateRangeString(valueDate, "calendar");
 
-    navigate(`${ROUTE_RELEASE_CALENDAR}/${chosenDateQuery}`);
+    navigate(`${ROUTE_RELEASE_CALENDAR}/${chosenDateQuery}${search}`);
   };
 
   return (
