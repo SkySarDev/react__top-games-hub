@@ -7,7 +7,7 @@ import cardNoImage from "images/card-no-image.png";
 
 const Wrapper = styled.div`
   position: relative;
-  height: ${({ height }) => `${height}px` || "auto"};
+  height: ${({ height }) => height || "250"}px;
   border: 1px solid #59584c;
   border-radius: 5px;
 `;

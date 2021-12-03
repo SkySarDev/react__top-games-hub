@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -6,6 +6,9 @@ import MainContentLayout from "components/UI/MainContentLayout";
 import SectionTitle from "components/UI/SectionTitle";
 import GamesFilterBlock from "components/blocks/GamesFilterBlock";
 import GameCard from "components/cards/GameCard";
+import GameCardSkeleton from "components/cards/GameCardSkeleton";
+import SkeletonLine from "components/UI/SkeletonLine";
+import ChooseDateBlock from "components/blocks/Calendar/ChooseDateBlock";
 
 const Container = styled.div`
   padding: 20px;
@@ -17,7 +20,15 @@ const GamesListGrid = styled.div`
   grid-gap: 20px;
 `;
 
-const TitleGrid = styled.div`
+const DatePickerGrid = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  font-size: 18px;
+  margin-bottom: 20px;
+`;
+
+const TitleWrapper = styled.div`
   display: grid;
   align-items: center;
   justify-content: space-between;
@@ -25,49 +36,57 @@ const TitleGrid = styled.div`
   margin-bottom: 20px;
 `;
 
-const GamesListContent = ({ isLoading, data }) => {
-  const [content, setContent] = useState({ noContent: true });
+const GamesCountTitle = styled.div`
+  display: grid;
+  grid-template-columns: auto minmax(100px, auto);
+  align-items: center;
+  column-gap: 10px;
+`;
 
-  useEffect(() => {
-    if (data) {
-      setContent(data);
-    }
-  }, [data]);
-
+const GamesListContent = ({ isLoading, data, queryDate, showChosenDate }) => {
   return (
-    <>
-      {isLoading || content.noContent ? (
-        <MainContentLayout title={"Loading..."}>
-          <Container>
-            <TitleGrid>Loading...</TitleGrid>
-          </Container>
-        </MainContentLayout>
-      ) : (
-        <MainContentLayout title={content.title}>
-          <Container>
-            <TitleGrid>
-              <SectionTitle>
-                Games count:{" "}
-                <span>{content.games_count.toLocaleString("en-US")}</span>
-              </SectionTitle>
-              <GamesFilterBlock />
-            </TitleGrid>
+    <MainContentLayout title={isLoading ? "Loading..." : data.title}>
+      <Container>
+        {queryDate && (
+          <DatePickerGrid>
+            <ChooseDateBlock
+              dateObj={queryDate}
+              showChosenDate={showChosenDate}
+            />
+          </DatePickerGrid>
+        )}
 
-            <GamesListGrid>
-              {content.results.map((game) => (
-                <GameCard key={game.id} {...game} />
-              ))}
-            </GamesListGrid>
-          </Container>
-        </MainContentLayout>
-      )}
-    </>
+        <TitleWrapper>
+          <SectionTitle>
+            <GamesCountTitle>
+              Games count:
+              <span>
+                {isLoading ? (
+                  <SkeletonLine />
+                ) : (
+                  data.games_count.toLocaleString("en-US")
+                )}
+              </span>
+            </GamesCountTitle>
+          </SectionTitle>
+          <GamesFilterBlock />
+        </TitleWrapper>
+
+        <GamesListGrid>
+          {isLoading
+            ? Array.from({ length: 15 }, (_, i) => <GameCardSkeleton key={i} />)
+            : data.results.map((game) => <GameCard key={game.id} {...game} />)}
+        </GamesListGrid>
+      </Container>
+    </MainContentLayout>
   );
 };
 
 GamesListContent.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   data: PropTypes.object,
+  queryDate: PropTypes.object,
+  showChosenDate: PropTypes.func,
 };
 
 export default GamesListContent;

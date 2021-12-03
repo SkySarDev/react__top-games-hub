@@ -5,12 +5,12 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_RELEASE_CALENDAR } from "utils/constants";
 
-import ReleaseCalendarPage from "components/pages/ReleaseCalendarPage";
 import {
   getDefaultDateRange,
   getDateRangeString,
   getRequestDateRange,
 } from "utils/dateFuncs";
+import GamesListContent from "components/blocks/Content/GamesListContent";
 
 const ReleaseCalendarContainer = () => {
   const { data, loading } = useSelector((state) => state.mainContent);
@@ -45,12 +45,22 @@ const ReleaseCalendarContainer = () => {
   };
 
   return (
-    <ReleaseCalendarPage
-      isLoading={loading}
-      data={data.releaseCalendar}
-      queryDate={queryDate}
-      showChosenDate={showChosenDate}
-    />
+    <>
+      {loading || !data.releaseCalendar ? (
+        <GamesListContent
+          isLoading
+          queryDate={queryDate}
+          showChosenDate={showChosenDate}
+        />
+      ) : (
+        <GamesListContent
+          isLoading={false}
+          queryDate={queryDate}
+          showChosenDate={showChosenDate}
+          data={data.releaseCalendar}
+        />
+      )}
+    </>
   );
 };
 

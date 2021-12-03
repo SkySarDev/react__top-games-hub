@@ -16,7 +16,15 @@ const AllGamesContainer = () => {
     dispatch(fetchContent(ROUTE_GAMES + search));
   }, [dispatch, search]);
 
-  return <GamesListContent isLoading={loading} data={data.games} />;
+  return (
+    <>
+      {loading || !data.games ? (
+        <GamesListContent isLoading />
+      ) : (
+        <GamesListContent isLoading={false} data={data.games} />
+      )}
+    </>
+  );
 };
 
 export default AllGamesContainer;

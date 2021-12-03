@@ -47,17 +47,25 @@ const ShowButton = styled.button`
 `;
 
 const ChooseDateBlock = ({ dateObj, showChosenDate }) => {
-  const [date, setDate] = useState([]);
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
   const [overlayActive, setOverlayActive] = useState(false);
 
   useEffect(() => {
-    setDate([
-      {
-        startDate: new Date(dateObj.startDate),
-        endDate: new Date(dateObj.endDate),
-        key: "selection",
-      },
-    ]);
+    if (dateObj.startDate) {
+      setDate([
+        {
+          startDate: new Date(dateObj.startDate),
+          endDate: new Date(dateObj.endDate),
+          key: "selection",
+        },
+      ]);
+    }
   }, [dateObj]);
 
   const showDatePicker = () => {
@@ -70,25 +78,21 @@ const ChooseDateBlock = ({ dateObj, showChosenDate }) => {
   };
 
   return (
-    <>
-      {date.length && (
-        <Container>
-          <DisplayChosenDate onClick={showDatePicker}>
-            Choose date: {getDateRangeString(date[0], "short")}
-          </DisplayChosenDate>
+    <Container>
+      <DisplayChosenDate onClick={showDatePicker}>
+        Choose date: {getDateRangeString(date[0], "short")}
+      </DisplayChosenDate>
 
-          <DatePickerOverlay className={`${overlayActive ? " active" : ""}`}>
-            <DateRange
-              onChange={(item) => setDate([item.selection])}
-              moveRangeOnFirstSelection={false}
-              showDateDisplay={false}
-              ranges={date}
-            />
-            <ShowButton onClick={applyFilterHandler}>Show games</ShowButton>
-          </DatePickerOverlay>
-        </Container>
-      )}
-    </>
+      <DatePickerOverlay className={`${overlayActive ? " active" : ""}`}>
+        <DateRange
+          onChange={(item) => setDate([item.selection])}
+          moveRangeOnFirstSelection={false}
+          showDateDisplay={false}
+          ranges={date}
+        />
+        <ShowButton onClick={applyFilterHandler}>Show games</ShowButton>
+      </DatePickerOverlay>
+    </Container>
   );
 };
 
