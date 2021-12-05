@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_GENRES } from "utils/constants";
 
-import CardsListPage from "components/pages/CardsListPage";
+import CardsListContent from "components/blocks/Content/CardsListContent";
 
 const AllGenresContainer = () => {
   const { data, loading } = useSelector((state) => state.mainContent);
@@ -15,11 +15,17 @@ const AllGenresContainer = () => {
   }, [dispatch]);
 
   return (
-    <CardsListPage
-      isLoading={loading}
-      data={data.genres}
-      queryParam={"genres"}
-    />
+    <>
+      {loading || !data.genres ? (
+        <CardsListContent isLoading />
+      ) : (
+        <CardsListContent
+          isLoading={false}
+          data={data.genres}
+          queryParam={"genres"}
+        />
+      )}
+    </>
   );
 };
 

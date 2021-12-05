@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_PUBLISHERS } from "utils/constants";
 
-import CardsListPage from "components/pages/CardsListPage";
+import CardsListContent from "components/blocks/Content/CardsListContent";
 
 const AllPublishersContainer = () => {
   const { data, loading } = useSelector((state) => state.mainContent);
@@ -15,11 +15,17 @@ const AllPublishersContainer = () => {
   }, [dispatch]);
 
   return (
-    <CardsListPage
-      isLoading={loading}
-      data={data.publishers}
-      queryParam={"publishers"}
-    />
+    <>
+      {loading || !data.publishers ? (
+        <CardsListContent isLoading />
+      ) : (
+        <CardsListContent
+          isLoading={false}
+          data={data.publishers}
+          queryParam={"publishers"}
+        />
+      )}
+    </>
   );
 };
 
