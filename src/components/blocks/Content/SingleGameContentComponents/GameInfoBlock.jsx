@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 
 import * as routes from "utils/constants";
 
-import GameInfoParagraph from "components/blocks/SingleGamePageComponents/GameInfoParagraph";
-import GameInfoValueList from "components/blocks/SingleGamePageComponents/GameInfoValueList";
+import GameInfoParagraph from "./GameInfoParagraph";
+import GameInfoValueList from "./GameInfoValueList";
+import SectionTitle from "components/UI/SectionTitle";
 
 const GameInfoBlock = ({
   released,
@@ -15,7 +16,9 @@ const GameInfoBlock = ({
   platforms,
 }) => {
   return (
-    <>
+    <div>
+      <SectionTitle bottom={10}>Game info</SectionTitle>
+
       {released && (
         <GameInfoParagraph title={"Release date"}>
           <Link to={`${routes.ROUTE_RELEASE_CALENDAR}/${released}`}>
@@ -53,7 +56,7 @@ const GameInfoBlock = ({
           />
         </GameInfoParagraph>
       )}
-    </>
+    </div>
   );
 };
 

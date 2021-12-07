@@ -7,6 +7,7 @@ const Placeholder = styled.div`
   background-color: #484848;
   color: #484848;
   border-radius: 3px;
+  margin: ${({ margin }) => margin || "0"};
 
   &:before {
     content: "";
@@ -33,8 +34,8 @@ const Placeholder = styled.div`
   }
 `;
 
-const SkeletonLine = () => {
-  return <Placeholder>.</Placeholder>;
+const SkeletonLine = ({ margin }) => {
+  return <Placeholder margin={margin}>.</Placeholder>;
 };
 
 export default SkeletonLine;

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_GAMES } from "utils/constants";
 
-import SingleGamePage from "components/pages/SingleGamePage";
+import SingleGameContent from "components/blocks/Content/SingleGameContent";
 
 const SingleGameContainer = () => {
   const { data, loading } = useSelector((state) => state.mainContent);
@@ -16,7 +16,15 @@ const SingleGameContainer = () => {
     dispatch(fetchContent(`${ROUTE_GAMES}/${slug}`));
   }, [dispatch, slug]);
 
-  return <SingleGamePage isLoading={loading} gameData={data.game} />;
+  return (
+    <>
+      {loading || !data.game ? (
+        <SingleGameContent isLoading />
+      ) : (
+        <SingleGameContent isLoading={false} data={data.game} />
+      )}
+    </>
+  );
 };
 
 export default SingleGameContainer;
