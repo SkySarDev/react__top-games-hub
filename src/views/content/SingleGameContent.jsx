@@ -6,10 +6,10 @@ import MainContentLayout from "components/UI/MainContentLayout";
 import GenresList from "components/UI/GenresList";
 import MetacriticScore from "components/UI/MetacriticScore";
 import GenresListSkeleton from "components/UI/GenresList/GenresListSkeleton";
-import GameInfoBlock from "./SingleGameContentComponents/GameInfoBlock";
-import GameScreenshots from "./SingleGameContentComponents/GameScreenshots";
-import GameInfoBlockSkeleton from "./SingleGameContentComponents/GameInfoBlockSkeleton";
-import GameDescription from "./SingleGameContentComponents/GameDescription";
+import GameInfoBlock from "components/blocks/SingleGameContent/GameInfoBlock";
+import GameScreenshots from "components/blocks/SingleGameContent/GameScreenshots";
+import GameInfoBlockSkeleton from "components/blocks/SingleGameContent/GameInfoBlockSkeleton";
+import GameDescription from "components/blocks/SingleGameContent/GameDescription";
 
 const BoxInner = styled.div`
   font-size: 18px;

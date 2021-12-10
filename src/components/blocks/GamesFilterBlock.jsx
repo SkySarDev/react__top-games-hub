@@ -6,8 +6,8 @@ import {
   genresList,
   orderingList,
   platformsList,
-} from "components/blocks/Filter/filtersList";
-import FilterSelectMenu from "components/blocks/Filter/FilterSelectMenu";
+} from "components/filter/filtersList";
+import FilterSelectMenu from "components/filter/FilterSelectMenu";
 
 const Wrapper = styled.div`
   display: grid;

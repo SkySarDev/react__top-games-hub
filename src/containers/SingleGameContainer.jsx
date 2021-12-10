@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_GAMES } from "utils/constants";
 
-import SingleGameContent from "components/blocks/Content/SingleGameContent";
+import SingleGameContent from "views/content/SingleGameContent";
 
 const SingleGameContainer = () => {
   const { data, loading } = useSelector((state) => state.mainContent);

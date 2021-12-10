@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_DEVELOPERS } from "utils/constants";
 
-import CardsListContent from "components/blocks/Content/CardsListContent";
+import CardsListContent from "views/content/CardsListContent";
 
 const AllDevelopersContainer = () => {
   const { data, loading } = useSelector((state) => state.mainContent);

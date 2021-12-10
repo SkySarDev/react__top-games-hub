@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomePage = () => {
+const HomeContent = () => {
   return (
     <div>
       <h1 style={{ fontSize: "2rem" }}>Home page</h1>
@@ -8,4 +8,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default HomeContent;

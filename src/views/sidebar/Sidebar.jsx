@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Navbar from "components/sidebar/Navbar";
+import Navbar from "views/sidebar/Navbar";
 
 const SidebarContainer = styled.div`
   position: sticky;

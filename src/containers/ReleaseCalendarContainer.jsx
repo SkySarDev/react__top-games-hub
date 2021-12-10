@@ -10,7 +10,7 @@ import {
   getDateRangeString,
   getRequestDateRange,
 } from "utils/dateFuncs";
-import GamesListContent from "components/blocks/Content/GamesListContent";
+import GamesListContent from "views/content/GamesListContent";
 
 const ReleaseCalendarContainer = () => {
   const { data, loading } = useSelector((state) => state.mainContent);

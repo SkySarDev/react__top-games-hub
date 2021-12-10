@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_GAMES } from "utils/constants";
 
-import GamesListContent from "components/blocks/Content/GamesListContent";
+import GamesListContent from "views/content/GamesListContent";
 
 const AllGamesContainer = () => {
   const { data, loading } = useSelector((state) => state.mainContent);
