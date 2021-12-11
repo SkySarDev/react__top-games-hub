@@ -8,7 +8,7 @@ import { ROUTE_GAMES } from "utils/constants";
 import SingleGameContent from "views/content/SingleGameContent";
 
 const SingleGameContainer = () => {
-  const { data, loading } = useSelector((state) => state.mainContent);
+  const { data, firstLoading } = useSelector((state) => state.mainContent);
   const dispatch = useDispatch();
   const { slug } = useParams();
 
@@ -18,7 +18,7 @@ const SingleGameContainer = () => {
 
   return (
     <>
-      {loading || !data.game ? (
+      {firstLoading || !data.game ? (
         <SingleGameContent isLoading />
       ) : (
         <SingleGameContent isLoading={false} data={data.game} />

@@ -7,7 +7,9 @@ import { ROUTE_PUBLISHERS } from "utils/constants";
 import CardsListContent from "views/content/CardsListContent";
 
 const AllPublishersContainer = () => {
-  const { data, loading } = useSelector((state) => state.mainContent);
+  const { data, firstLoading, loading } = useSelector(
+    (state) => state.mainContent
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,12 +18,13 @@ const AllPublishersContainer = () => {
 
   return (
     <>
-      {loading || !data.publishers ? (
-        <CardsListContent isLoading />
+      {firstLoading || !data.publishers ? (
+        <CardsListContent firstLoading />
       ) : (
         <CardsListContent
-          isLoading={false}
-          data={data.publishers}
+          firstLoading={false}
+          loading={loading}
+          data={data}
           queryParam={"publishers"}
         />
       )}

@@ -21,14 +21,18 @@ const GamesCountTitle = styled.div`
   column-gap: 10px;
 `;
 
-const GamesListBlockHeader = ({ isLoading, gamesCount }) => {
+const GamesListBlockHeader = ({ firstLoading, gamesCount }) => {
   return (
     <TitleWrapper>
       <SectionTitle>
         <GamesCountTitle>
           Games count:
           <span>
-            {isLoading ? <SkeletonLine /> : gamesCount.toLocaleString("en-US")}
+            {firstLoading ? (
+              <SkeletonLine />
+            ) : (
+              gamesCount.toLocaleString("en-US")
+            )}
           </span>
         </GamesCountTitle>
       </SectionTitle>
@@ -40,6 +44,6 @@ const GamesListBlockHeader = ({ isLoading, gamesCount }) => {
 export default GamesListBlockHeader;
 
 GamesListBlockHeader.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  firstLoading: PropTypes.bool.isRequired,
   gamesCount: PropTypes.number,
 };

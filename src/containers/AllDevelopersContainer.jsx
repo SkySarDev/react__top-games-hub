@@ -7,7 +7,9 @@ import { ROUTE_DEVELOPERS } from "utils/constants";
 import CardsListContent from "views/content/CardsListContent";
 
 const AllDevelopersContainer = () => {
-  const { data, loading } = useSelector((state) => state.mainContent);
+  const { data, firstLoading, loading } = useSelector(
+    (state) => state.mainContent
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,12 +18,13 @@ const AllDevelopersContainer = () => {
 
   return (
     <>
-      {loading || !data.developers ? (
-        <CardsListContent isLoading />
+      {firstLoading || !data.developers ? (
+        <CardsListContent firstLoading />
       ) : (
         <CardsListContent
-          isLoading={false}
-          data={data.developers}
+          firstLoading={false}
+          loading={loading}
+          data={data}
           queryParam={"developers"}
         />
       )}

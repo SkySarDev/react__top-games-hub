@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
-import { fetchContent } from "store/reducers/mainContentReducer/actions";
+import {
+  fetchContent,
+  fetchMoreData,
+} from "store/reducers/mainContentReducer/actions";
 import { ROUTE_RELEASE_CALENDAR } from "utils/constants";
 
 import {
@@ -13,7 +16,9 @@ import {
 import GamesListContent from "views/content/GamesListContent";
 
 const ReleaseCalendarContainer = () => {
-  const { data, loading } = useSelector((state) => state.mainContent);
+  const { data, firstLoading, loading } = useSelector(
+    (state) => state.mainContent
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { slug } = useParams();
@@ -38,6 +43,16 @@ const ReleaseCalendarContainer = () => {
     );
   }, [dispatch, slug, search]);
 
+  const getMoreData = (arrLength) => {
+    const dataSize = `${search ? "&" : "?"}data_size=${arrLength}`;
+
+    dispatch(
+      fetchMoreData(
+        `${ROUTE_RELEASE_CALENDAR}-more-data/${queryDate.startDate},${queryDate.endDate}${search}${dataSize}`
+      )
+    );
+  };
+
   const showChosenDate = (valueDate) => {
     const chosenDateQuery = getDateRangeString(valueDate, "calendar");
 
@@ -46,18 +61,20 @@ const ReleaseCalendarContainer = () => {
 
   return (
     <>
-      {loading || !data.releaseCalendar ? (
+      {firstLoading || !data.releaseCalendar ? (
         <GamesListContent
-          isLoading
+          firstLoading
           queryDate={queryDate}
           showChosenDate={showChosenDate}
         />
       ) : (
         <GamesListContent
-          isLoading={false}
+          firstLoading={false}
+          loading={loading}
           queryDate={queryDate}
           showChosenDate={showChosenDate}
-          data={data.releaseCalendar}
+          data={data}
+          getMoreData={getMoreData}
         />
       )}
     </>

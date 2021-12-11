@@ -7,7 +7,9 @@ import { ROUTE_GENRES } from "utils/constants";
 import CardsListContent from "views/content/CardsListContent";
 
 const AllGenresContainer = () => {
-  const { data, loading } = useSelector((state) => state.mainContent);
+  const { data, firstLoading, loading } = useSelector(
+    (state) => state.mainContent
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,12 +18,13 @@ const AllGenresContainer = () => {
 
   return (
     <>
-      {loading || !data.genres ? (
-        <CardsListContent isLoading />
+      {firstLoading || !data.genres ? (
+        <CardsListContent firstLoading />
       ) : (
         <CardsListContent
-          isLoading={false}
-          data={data.genres}
+          firstLoading={false}
+          loading={loading}
+          data={data}
           queryParam={"genres"}
         />
       )}

@@ -19,9 +19,16 @@ const DatePickerGrid = styled.div`
   margin-bottom: 20px;
 `;
 
-const GamesListContent = ({ isLoading, data, queryDate, showChosenDate }) => {
+const GamesListContent = ({
+  firstLoading,
+  loading,
+  data,
+  queryDate,
+  showChosenDate,
+  getMoreData,
+}) => {
   return (
-    <MainContentLayout title={isLoading ? "Loading..." : data.title}>
+    <MainContentLayout title={firstLoading ? "Loading..." : data.title}>
       <Container>
         {queryDate && (
           <DatePickerGrid>
@@ -33,21 +40,29 @@ const GamesListContent = ({ isLoading, data, queryDate, showChosenDate }) => {
         )}
 
         <GamesListBlockHeader
-          isLoading={isLoading}
+          firstLoading={firstLoading}
           gamesCount={data?.games_count}
         />
 
-        <GamesListBlockBody isLoading={isLoading} results={data?.results} />
+        <GamesListBlockBody
+          firstLoading={firstLoading}
+          gamesList={data?.content_array}
+          gamesCount={data?.games_count}
+          loading={loading}
+          getMoreData={getMoreData}
+        />
       </Container>
     </MainContentLayout>
   );
 };
 
 GamesListContent.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  firstLoading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   data: PropTypes.object,
   queryDate: PropTypes.object,
   showChosenDate: PropTypes.func,
+  getMoreData: PropTypes.func,
 };
 
 export default GamesListContent;

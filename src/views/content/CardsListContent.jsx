@@ -6,13 +6,13 @@ import MainContentLayout from "components/UI/MainContentLayout";
 import ContentGrid from "components/UI/ContentGrid";
 import CardSkeleton from "components/cards/CardSkeleton";
 
-const CardsListContent = ({ isLoading, queryParam, data }) => {
+const CardsListContent = ({ firstLoading, queryParam, data }) => {
   return (
-    <MainContentLayout title={isLoading ? "Loading..." : data.title}>
+    <MainContentLayout title={firstLoading ? "Loading..." : data.title}>
       <ContentGrid>
-        {isLoading
+        {firstLoading
           ? Array.from({ length: 15 }, (_, i) => <CardSkeleton key={i} />)
-          : data.results.map((cardItem) => (
+          : data.content_array.map((cardItem) => (
               <Card key={cardItem.id} {...cardItem} queryParam={queryParam} />
             ))}
       </ContentGrid>
@@ -21,7 +21,8 @@ const CardsListContent = ({ isLoading, queryParam, data }) => {
 };
 
 CardsListContent.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  firstLoading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   queryParam: PropTypes.string,
   data: PropTypes.object,
 };

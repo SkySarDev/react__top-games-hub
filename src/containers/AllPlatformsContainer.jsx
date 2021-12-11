@@ -7,7 +7,9 @@ import { ROUTE_PLATFORMS } from "utils/constants";
 import CardsListContent from "views/content/CardsListContent";
 
 const AllPlatformsContainer = () => {
-  const { data, loading } = useSelector((state) => state.mainContent);
+  const { data, firstLoading, loading } = useSelector(
+    (state) => state.mainContent
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,12 +18,13 @@ const AllPlatformsContainer = () => {
 
   return (
     <>
-      {loading || !data.platforms ? (
-        <CardsListContent isLoading />
+      {firstLoading || !data.platforms ? (
+        <CardsListContent firstLoading />
       ) : (
         <CardsListContent
-          isLoading={false}
-          data={data.platforms}
+          firstLoading={false}
+          loading={loading}
+          data={data}
           queryParam={"platforms"}
         />
       )}
