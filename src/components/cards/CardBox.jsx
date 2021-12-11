@@ -16,7 +16,6 @@ const Background = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url(${({ image }) => image || cardNoImage});
   background-position: center;
   background-size: cover;
   border-radius: 5px;
@@ -63,9 +62,11 @@ const Hover = styled.div`
 `;
 
 const CardBox = ({ bgImage, height, children }) => {
+  const image = bgImage || cardNoImage;
+
   return (
     <Wrapper height={height}>
-      <Background image={bgImage}>
+      <Background style={{ backgroundImage: `url(${image})` }}>
         <Hover>{children}</Hover>
       </Background>
     </Wrapper>
