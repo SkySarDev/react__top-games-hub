@@ -25,7 +25,6 @@ const GamesListContent = ({
   data,
   queryDate,
   showChosenDate,
-  getMoreData,
 }) => {
   return (
     <MainContentLayout title={firstLoading ? "Loading..." : data.title}>
@@ -47,9 +46,8 @@ const GamesListContent = ({
         <GamesListBlockBody
           firstLoading={firstLoading}
           gamesList={data?.content_array}
-          gamesCount={data?.games_count}
           loading={loading}
-          getMoreData={getMoreData}
+          nextPageQuery={data?.nextPageQuery}
         />
       </Container>
     </MainContentLayout>
@@ -62,7 +60,6 @@ GamesListContent.propTypes = {
   data: PropTypes.object,
   queryDate: PropTypes.object,
   showChosenDate: PropTypes.func,
-  getMoreData: PropTypes.func,
 };
 
 export default GamesListContent;

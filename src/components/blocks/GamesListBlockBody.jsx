@@ -1,11 +1,14 @@
 import React, { useRef } from "react";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import GameCardSkeleton from "components/cards/GameCardSkeleton";
-import GameCard from "components/cards/GameCard";
-import SkeletonCardsCreator from "components/UI/SkeletonCardsCreator";
 import useInfiniteScroll from "hooks/useInfiniteScroll";
+import useFetchMoreData from "hooks/useFetchMoreData";
+
+import GameCardSkeleton from "components/UI/cards/GameCardSkeleton";
+import GameCard from "components/UI/cards/GameCard";
+import SkeletonCardsCreator from "components/UI/SkeletonCardsCreator";
 
 const GamesListGrid = styled.div`
   display: grid;
@@ -17,17 +20,17 @@ const GamesListBlockBody = ({
   firstLoading,
   loading,
   gamesList,
-  gamesCount,
-  getMoreData,
+  nextPageQuery,
 }) => {
+  const { pathname } = useLocation();
   const anchor = useRef(null);
-  useInfiniteScroll(anchor, fetchMoreData);
+  const getMoreData = useFetchMoreData(nextPageQuery, pathname);
 
-  function fetchMoreData() {
-    if (gamesList && gamesList.length < gamesCount) {
+  useInfiniteScroll(anchor, () => {
+    if (!firstLoading && !loading) {
       getMoreData();
     }
-  }
+  });
 
   return (
     <>
@@ -49,8 +52,6 @@ GamesListBlockBody.propTypes = {
   firstLoading: PropTypes.bool.isRequired,
   loading: PropTypes.bool,
   gamesList: PropTypes.array,
-  gamesCount: PropTypes.number,
-  getMoreData: PropTypes.func,
 };
 
 export default GamesListBlockBody;

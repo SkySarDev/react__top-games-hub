@@ -2,15 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import {
-  fetchContent,
-  fetchMoreData,
-} from "store/reducers/mainContentReducer/actions";
+import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_GAMES } from "utils/constants";
 
 import GamesListContent from "views/content/GamesListContent";
 
 const AllGamesContainer = () => {
+  const { pathname } = useLocation();
   const { data, firstLoading, loading } = useSelector(
     (state) => state.mainContent
   );
@@ -21,23 +19,12 @@ const AllGamesContainer = () => {
     dispatch(fetchContent(ROUTE_GAMES + search));
   }, [dispatch, search]);
 
-  const getMoreData = () => {
-    if (data?.nextPageQuery) {
-      dispatch(fetchMoreData(`${ROUTE_GAMES}-more?${data.nextPageQuery}`));
-    }
-  };
-
   return (
     <>
-      {firstLoading || !data.games ? (
+      {firstLoading || data.category !== pathname ? (
         <GamesListContent firstLoading />
       ) : (
-        <GamesListContent
-          firstLoading={false}
-          loading={loading}
-          data={data}
-          getMoreData={getMoreData}
-        />
+        <GamesListContent firstLoading={false} loading={loading} data={data} />
       )}
     </>
   );

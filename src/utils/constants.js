@@ -9,3 +9,4 @@ export const ROUTE_PLATFORMS = "/platforms";
 export const ROUTE_SINGLE_GAME = "/games/:slug";
 export const ROUTE_RELEASE_CALENDAR = "/release-calendar";
 export const ROUTE_SINGLE_RELEASE_CALENDAR = "/release-calendar/:slug";
+export const ROUTE_MORE_DATA = "/more-data";
