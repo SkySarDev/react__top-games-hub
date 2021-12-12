@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 import SkeletonLine from "components/UI/SkeletonLine";
+import CardSpinner from "components/UI/cards/CardSpinner";
 
 const Wrapper = styled.div`
+  position: relative;
   height: 250px;
   border: 1px solid #59584c;
   background-color: #1b1b1b;
@@ -13,7 +15,7 @@ const Wrapper = styled.div`
 const Body = styled.div`
   display: grid;
   height: 100%;
-  row-gap: 10px;
+  row-gap: 15px;
   padding: 15px;
   align-content: end;
 `;
@@ -28,11 +30,13 @@ const InfoRow = styled.div`
   grid-template-columns: 1fr 100px;
   column-gap: 15px;
   justify-content: space-between;
+  height: 20px;
 `;
 
 const GameCardSkeleton = () => {
   return (
     <Wrapper>
+      <CardSpinner />
       <Body>
         <Title>
           <SkeletonLine />

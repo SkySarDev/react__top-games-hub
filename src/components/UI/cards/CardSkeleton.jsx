@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 import SkeletonLine from "components/UI/SkeletonLine";
+import CardSpinner from "components/UI/cards/CardSpinner";
 
 const Wrapper = styled.div`
+  position: relative;
   height: 220px;
   border: 1px solid #59584c;
   background-color: #1b1b1b;
@@ -11,7 +13,6 @@ const Wrapper = styled.div`
 `;
 
 const Body = styled.div`
-  position: relative;
   display: grid;
   align-content: end;
   height: 100%;
@@ -33,6 +34,7 @@ const InfoRow = styled.div`
 const CardSkeleton = () => {
   return (
     <Wrapper>
+      <CardSpinner />
       <Body>
         <Title>
           <SkeletonLine />
