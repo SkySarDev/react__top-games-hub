@@ -7,7 +7,7 @@ import { ROUTE_RELEASE_CALENDAR, ROUTE_GAMES } from "utils/constants";
 import { getShortDateString } from "utils/dateFuncs";
 
 import GenresList from "components/UI/GenresList";
-import CardBox from "components/cards/CardBox";
+import CardBox from "components/UI/cards/CardBox";
 import MetacriticScore from "components/UI/MetacriticScore";
 
 const Body = styled.div`

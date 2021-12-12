@@ -1,35 +1,31 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
-import { ROUTE_GENRES } from "utils/constants";
 
 import CardsListContent from "views/content/CardsListContent";
 
-const AllGenresContainer = () => {
+const CategoriesContainer = () => {
+  const { pathname } = useLocation();
   const { data, firstLoading, loading } = useSelector(
     (state) => state.mainContent
   );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContent(ROUTE_GENRES));
-  }, [dispatch]);
+    dispatch(fetchContent(pathname));
+  }, [pathname, dispatch]);
 
   return (
     <>
-      {firstLoading || !data.genres ? (
+      {firstLoading || data.category !== pathname ? (
         <CardsListContent firstLoading />
       ) : (
-        <CardsListContent
-          firstLoading={false}
-          loading={loading}
-          data={data}
-          queryParam={"genres"}
-        />
+        <CardsListContent firstLoading={false} loading={loading} data={data} />
       )}
     </>
   );
 };
 
-export default AllGenresContainer;
+export default CategoriesContainer;
