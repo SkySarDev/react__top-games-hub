@@ -13,9 +13,15 @@ const Icon = styled.img`
 `;
 
 const ButtonToTop = () => {
-  const [scroll, setScroll] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const handleScroll = () => setScroll(window.scrollY);
+  const handleScroll = () => {
+    if (window.scrollY > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
 
   const handleOnClick = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
@@ -29,7 +35,7 @@ const ButtonToTop = () => {
 
   return (
     <>
-      {scroll > 300 && (
+      {isVisible && (
         <Icon src={arrowToTop} alt="To top" onClick={handleOnClick} />
       )}
     </>
