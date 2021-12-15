@@ -4,6 +4,7 @@ import Layout from "components/UI/Layout";
 import AppRouter from "components/AppRouter";
 import Sidebar from "views/sidebar/Sidebar";
 import ContentHeaderContainer from "containers/ContentHeaderContainer";
+import ButtonToTop from "components/UI/ButtonToTop";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <ContentHeaderContainer />
         <AppRouter />
       </div>
+      <ButtonToTop />
     </Layout>
   );
 }
