@@ -81,7 +81,9 @@ const GameCard = ({
         <InfoRow>
           <GenresList genresList={genres} maxWidth={215} />
           {released && (
-            <Link to={`${ROUTE_RELEASE_CALENDAR}/${released}`}>
+            <Link
+              to={`${ROUTE_RELEASE_CALENDAR}?dates=${released},${released}`}
+            >
               {releaseDateShort}
             </Link>
           )}

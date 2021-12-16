@@ -21,7 +21,9 @@ const GameInfoBlock = ({
 
       {released && (
         <GameInfoParagraph title={"Release date"}>
-          <Link to={`${routes.ROUTE_RELEASE_CALENDAR}/${released}`}>
+          <Link
+            to={`${routes.ROUTE_RELEASE_CALENDAR}?dates=${released},${released}`}
+          >
             {released}
           </Link>
         </GameInfoParagraph>
