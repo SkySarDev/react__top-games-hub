@@ -7,10 +7,6 @@ import ChooseDateBlock from "components/calendar/ChooseDateBlock";
 import GamesListBlockHeader from "components/blocks/GamesListBlockHeader";
 import GamesListBlockBody from "components/blocks/GamesListBlockBody";
 
-const Container = styled.div`
-  padding: 20px;
-`;
-
 const DatePickerGrid = styled.div`
   display: flex;
   align-items: center;
@@ -22,25 +18,23 @@ const DatePickerGrid = styled.div`
 const GamesListContent = ({ firstLoading, loading, data, showDatePicker }) => {
   return (
     <MainContentLayout title={firstLoading ? "Loading..." : data.title}>
-      <Container>
-        {showDatePicker && (
-          <DatePickerGrid>
-            <ChooseDateBlock />
-          </DatePickerGrid>
-        )}
+      {showDatePicker && (
+        <DatePickerGrid>
+          <ChooseDateBlock />
+        </DatePickerGrid>
+      )}
 
-        <GamesListBlockHeader
-          firstLoading={firstLoading}
-          gamesCount={data?.games_count}
-        />
+      <GamesListBlockHeader
+        firstLoading={firstLoading}
+        gamesCount={data?.games_count}
+      />
 
-        <GamesListBlockBody
-          firstLoading={firstLoading}
-          gamesList={data?.content_array}
-          loading={loading}
-          nextPageQuery={data?.nextPageQuery}
-        />
-      </Container>
+      <GamesListBlockBody
+        firstLoading={firstLoading}
+        gamesList={data?.content_array}
+        loading={loading}
+        nextPageQuery={data?.nextPageQuery}
+      />
     </MainContentLayout>
   );
 };

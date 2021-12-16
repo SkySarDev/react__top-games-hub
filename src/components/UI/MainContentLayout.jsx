@@ -20,11 +20,17 @@ const Body = styled.div`
   border-radius: 5px;
 `;
 
+const Container = styled.div`
+  padding: 20px;
+`;
+
 const MainContentLayout = ({ title, children }) => {
   return (
     <Wrapper>
       <Title>{title}</Title>
-      <Body>{children}</Body>
+      <Body>
+        <Container>{children}</Container>
+      </Body>
     </Wrapper>
   );
 };

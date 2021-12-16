@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
 import useInfiniteScroll from "hooks/useInfiniteScroll";
 import useFetchMoreData from "hooks/useFetchMoreData";
@@ -9,12 +8,7 @@ import useFetchMoreData from "hooks/useFetchMoreData";
 import GameCardSkeleton from "components/UI/cards/GameCardSkeleton";
 import GameCard from "components/UI/cards/GameCard";
 import SkeletonCardsCreator from "components/UI/SkeletonCardsCreator";
-
-const GamesListGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-`;
+import ContentGrid from "components/UI/ContentGrid";
 
 const GamesListBlockBody = ({
   firstLoading,
@@ -34,14 +28,14 @@ const GamesListBlockBody = ({
 
   return (
     <>
-      <GamesListGrid>
+      <ContentGrid>
         {!!gamesList?.length &&
           gamesList.map((game) => <GameCard key={game.id} {...game} />)}
 
         {(firstLoading || loading) && (
           <SkeletonCardsCreator length={15} CardsComponent={GameCardSkeleton} />
         )}
-      </GamesListGrid>
+      </ContentGrid>
 
       {(!firstLoading || !loading) && <div ref={anchor} />}
     </>

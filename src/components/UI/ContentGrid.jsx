@@ -5,7 +5,6 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
-  padding: 20px;
 `;
 
 const ContentGrid = ({ children }) => <Grid>{children}</Grid>;
