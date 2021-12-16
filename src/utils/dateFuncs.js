@@ -6,7 +6,7 @@ export const getShortDateString = (dateValue) => {
   });
 };
 
-export const getCalendarDateString = (dateValue) => {
+const getFormattedDate = (dateValue) => {
   const date = new Date(dateValue);
   const year = date.getFullYear();
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -15,39 +15,33 @@ export const getCalendarDateString = (dateValue) => {
   return `${year}-${month}-${day}`;
 };
 
-export const getDateRangeString = (dateObj, format) => {
+export const getCalendarDateRangeString = (dateObj) => {
   const { startDate, endDate } = dateObj;
-  const dateFormats = {
-    short: {
-      single: getShortDateString(startDate),
-      range: `${getShortDateString(startDate)} - ${getShortDateString(
-        endDate
-      )}`,
-    },
-    calendar: {
-      single: getCalendarDateString(startDate),
-      range: `${getCalendarDateString(startDate)},${getCalendarDateString(
-        endDate
-      )}`,
-    },
-  };
+  const start = getFormattedDate(startDate);
+  const end = startDate === endDate ? start : getFormattedDate(endDate);
+
+  return `${start},${end}`;
+};
+
+export const getCalendarShortString = (dateObj) => {
+  const { startDate, endDate } = dateObj;
 
   if (Date.parse(startDate) === Date.parse(endDate)) {
-    return dateFormats[format].single;
+    return getShortDateString(startDate);
   }
 
-  return dateFormats[format].range;
+  return `${getShortDateString(startDate)} - ${getShortDateString(endDate)}`;
 };
 
 export const getDefaultDateRange = () => {
   const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const lastDay = new Date(year, month, 0).getDate();
+  const startDate = getFormattedDate(today);
+  const nextMonth = today.getMonth() + 1;
+  const endDate = getFormattedDate(today.setMonth(nextMonth));
 
   return {
-    startDate: `${year}-${month}-01`,
-    endDate: `${year}-${month}-${lastDay}`,
+    startDate,
+    endDate,
   };
 };
 
@@ -55,7 +49,7 @@ export const getRequestDateRange = (slug) => {
   const [start, end] = slug.split(",");
 
   const startDate = start;
-  const endDate = end ? end : startDate;
+  const endDate = end || startDate;
 
   return {
     startDate,

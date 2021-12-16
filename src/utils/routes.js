@@ -43,10 +43,6 @@ const routesList = [
     path: routes.ROUTE_RELEASE_CALENDAR,
     element: <ReleaseCalendarContainer />,
   },
-  {
-    path: routes.ROUTE_SINGLE_RELEASE_CALENDAR,
-    element: <ReleaseCalendarContainer />,
-  },
 ];
 
 export default routesList;

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
-import { DateRange } from "react-date-range";
+import { useSearchParams } from "react-router-dom";
 
-import { getDateRangeString } from "utils/dateFuncs";
+import {
+  getCalendarDateRangeString,
+  getCalendarShortString,
+  getDefaultDateRange,
+  getRequestDateRange,
+} from "utils/dateFuncs";
+
+import DatePickerOverlay from "components/calendar/DatePickerOverlay";
 
 import { BlankWrapper } from "components/UI/styles";
 import "react-date-range/dist/styles.css";
@@ -23,30 +29,9 @@ const DisplayChosenDate = styled(BlankWrapper)`
   }
 `;
 
-const DatePickerOverlay = styled.div`
-  position: absolute;
-  z-index: 100;
-  top: 35px;
-  left: 0;
-  display: none;
-
-  &.active {
-    display: block;
-  }
-`;
-
-const ShowButton = styled.button`
-  margin-top: 5px;
-  padding: 10px;
-  width: 100%;
-  font-size: 16px;
-  font-weight: bold;
-  color: #1b1b1b;
-  text-align: center;
-  background-color: white;
-`;
-
-const ChooseDateBlock = ({ dateObj, showChosenDate }) => {
+const ChooseDateBlock = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [overlayActive, setOverlayActive] = useState(false);
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -54,51 +39,55 @@ const ChooseDateBlock = ({ dateObj, showChosenDate }) => {
       key: "selection",
     },
   ]);
-  const [overlayActive, setOverlayActive] = useState(false);
 
   useEffect(() => {
-    if (dateObj.startDate) {
-      setDate([
-        {
-          startDate: new Date(dateObj.startDate),
-          endDate: new Date(dateObj.endDate),
-          key: "selection",
-        },
-      ]);
+    let requestDate;
+    const dates = searchParams.get("dates");
+
+    if (dates) {
+      requestDate = getRequestDateRange(dates);
+    } else {
+      requestDate = getDefaultDateRange();
     }
-  }, [dateObj]);
 
-  const showDatePicker = () => {
-    setOverlayActive((prevState) => !prevState);
-  };
+    const { startDate, endDate } = requestDate;
 
-  const applyFilterHandler = () => {
+    setDate([
+      {
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+        key: "selection",
+      },
+    ]);
+  }, [searchParams]);
+
+  const showHideDatePicker = () => setOverlayActive((prevState) => !prevState);
+
+  const changeDate = (item) => setDate([item.selection]);
+
+  const applyFilter = () => {
+    const chosenDateQuery = getCalendarDateRangeString(date[0]);
+
     setOverlayActive(false);
-    showChosenDate(date[0]);
+    searchParams.set("dates", chosenDateQuery);
+    setSearchParams(searchParams);
   };
 
   return (
     <Container>
-      <DisplayChosenDate onClick={showDatePicker}>
-        Choose date: {getDateRangeString(date[0], "short")}
+      <DisplayChosenDate onClick={showHideDatePicker}>
+        Choose date: {getCalendarShortString(date[0])}
       </DisplayChosenDate>
 
-      <DatePickerOverlay className={`${overlayActive ? " active" : ""}`}>
-        <DateRange
-          onChange={(item) => setDate([item.selection])}
-          moveRangeOnFirstSelection={false}
-          showDateDisplay={false}
-          ranges={date}
+      {overlayActive && (
+        <DatePickerOverlay
+          date={date}
+          applyFilterHandler={applyFilter}
+          changeDate={changeDate}
         />
-        <ShowButton onClick={applyFilterHandler}>Show games</ShowButton>
-      </DatePickerOverlay>
+      )}
     </Container>
   );
 };
 
 export default ChooseDateBlock;
-
-ChooseDateBlock.propTypes = {
-  dateObj: PropTypes.object.isRequired,
-  showChosenDate: PropTypes.func.isRequired,
-};
