@@ -28,6 +28,10 @@ const routesList = [
     element: <CategoriesContainer />,
   },
   {
+    path: routes.ROUTE_TAGS,
+    element: <CategoriesContainer />,
+  },
+  {
     path: routes.ROUTE_PLATFORMS,
     element: <CategoriesContainer />,
   },
