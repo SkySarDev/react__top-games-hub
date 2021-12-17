@@ -27,7 +27,11 @@ const CardsListContent = ({ firstLoading, loading, data }) => {
       <ContentGrid>
         {!!data?.content_array.length &&
           data.content_array.map((cardItem) => (
-            <Card key={cardItem.id} {...cardItem} />
+            <Card
+              key={cardItem.id}
+              category={pathname.slice(1)}
+              {...cardItem}
+            />
           ))}
 
         {(firstLoading || loading) && (

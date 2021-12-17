@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import CardBox from "components/UI/cards/CardBox";
 import { ROUTE_GAMES } from "utils/constants";
@@ -34,10 +34,7 @@ const GamesCount = styled.span`
   color: #e2e0d0;
 `;
 
-const Card = ({ id, name, image_background, games_count }) => {
-  const { pathname } = useLocation();
-  const category = pathname.slice(1);
-
+const Card = ({ id, name, image_background, games_count, category }) => {
   return (
     <CardBox bgImage={image_background} height={220}>
       <Link to={`${ROUTE_GAMES}?${category}=${id}`}>
@@ -60,4 +57,5 @@ Card.propTypes = {
   name: PropTypes.string.isRequired,
   games_count: PropTypes.number.isRequired,
   image_background: PropTypes.string,
+  category: PropTypes.string.isRequired,
 };

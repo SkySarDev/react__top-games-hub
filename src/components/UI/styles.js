@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const MainTitle = styled.h2`
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: ${({ top }) => top || 0}px;
+  margin-bottom: ${({ bottom }) => bottom || 0}px;
+`;
+
 export const BlankWrapper = styled.div`
   background: #111210;
   border: 1px solid #59584c;
