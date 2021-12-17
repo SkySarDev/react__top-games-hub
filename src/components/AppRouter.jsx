@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import routes from "utils/routes";
 
@@ -9,6 +9,7 @@ const AppRouter = () => {
       {routes.map((route) => (
         <Route key={route.path} {...route} />
       ))}
+      <Route path={"*"} element={<Navigate to={"/"} />} />
     </Routes>
   );
 };

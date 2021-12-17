@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <ul>
       <NavItem>
-        <NavLink to={routes.ROUTE_HOME}>Home</NavLink>
+        <NavLink to={routes.ROUTE_ROOT}>Home</NavLink>
       </NavItem>
       <NavItem>
         <NavLink to={routes.ROUTE_GAMES}>Games</NavLink>

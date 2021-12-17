@@ -1,6 +1,6 @@
 import * as routes from "utils/constants";
 
-import HomeContent from "views/content/HomeContent";
+import HomePageContainer from "containers/HomePageContainer";
 import AllGamesContainer from "containers/AllGamesContainer";
 import SingleGameContainer from "containers/SingleGameContainer";
 import ReleaseCalendarContainer from "containers/ReleaseCalendarContainer";
@@ -8,12 +8,12 @@ import CategoriesContainer from "containers/CategoriesContainer";
 
 const routesList = [
   {
-    path: routes.ROUTE_HOME,
-    element: <HomeContent />,
+    path: routes.ROUTE_ROOT,
+    element: <HomePageContainer />,
   },
   {
-    path: "*",
-    element: <HomeContent />,
+    path: routes.ROUTE_HOME,
+    element: <HomePageContainer />,
   },
   {
     path: routes.ROUTE_GAMES,
