@@ -10,7 +10,8 @@ const Container = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 310px auto;
+  grid-template-columns: 290px auto;
+  column-gap: 20px;
 `;
 
 const Layout = ({ children }) => {

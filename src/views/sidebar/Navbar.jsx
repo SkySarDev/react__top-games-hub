@@ -1,52 +1,61 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import * as routes from "utils/constants";
 import styled from "styled-components";
 
+import { navbarList } from "utils/navbarList";
+
+import ContentContainer from "components/UI/ContentContainer";
+
+const NavList = styled.ul`
+  width: 160px;
+  margin: 0 auto;
+  text-align: left;
+`;
+
 const NavItem = styled.li`
+  display: grid;
+  grid-template-columns: 30px auto;
+  align-items: center;
+  column-gap: 10px;
+
   &:not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   a {
     font-size: 24px;
-    color: #d9ebe9;
+    color: #e2e0d0;
+    transition: color 0.3s;
 
     &.active,
     &:hover {
-      color: #798f8c;
+      color: #999999;
     }
   }
 `;
 
+const NavIcon = styled.img`
+  width: 30px;
+  height: 30px;
+  opacity: 0.7;
+`;
+
 const Navbar = () => {
   return (
-    <ul>
-      <NavItem>
-        <NavLink to={routes.ROUTE_ROOT}>Home</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to={routes.ROUTE_GAMES}>Games</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to={routes.ROUTE_GENRES}>Genres</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to={routes.ROUTE_TAGS}>Tags</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to={routes.ROUTE_RELEASE_CALENDAR}>Calendar</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to={routes.ROUTE_PLATFORMS}>Platforms</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to={routes.ROUTE_DEVELOPERS}>Developers</NavLink>
-      </NavItem>
-      <NavItem>
-        <NavLink to={routes.ROUTE_PUBLISHERS}>Publishers</NavLink>
-      </NavItem>
-    </ul>
+    <ContentContainer>
+      <NavList>
+        {navbarList.map((navItem) => {
+          const { link, name, icon } = navItem;
+
+          return (
+            <NavItem key={name}>
+              <NavIcon src={icon} alt={name} />
+              <NavLink to={link}>{name}</NavLink>
+            </NavItem>
+          );
+        })}
+      </NavList>
+    </ContentContainer>
   );
 };
 
