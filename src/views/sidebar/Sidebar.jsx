@@ -1,32 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 
-import Navbar from "views/sidebar/Navbar";
+import Navbar from "components/blocks/sidebar/Navbar";
+import Searchbar from "components/blocks/sidebar/Searchbar";
 
-const SidebarContainer = styled.div`
+import logo from "images/logo.png";
+
+const SidebarWrapper = styled.div`
   position: sticky;
   top: 15px;
+  text-align: center;
+`;
+
+const Logo = styled.img`
+  width: 200px;
+  height: 200px;
+  opacity: 0.7;
 `;
 
 const Sidebar = () => {
   return (
     <div>
-      <SidebarContainer>
-        <div style={{ width: 150, height: 70, fontSize: 30 }}>LOGO</div>
-        <div
-          style={{
-            width: 150,
-            height: 100,
-            border: "1px solid #d9ebe9",
-            borderRadius: 5,
-            marginBottom: 30,
-          }}
-        >
-          User Panel
-        </div>
+      <SidebarWrapper>
+        <Logo src={logo} alt="Top Games Hub Logo" />
+        <Searchbar />
         <Navbar />
-      </SidebarContainer>
-      <div />
+      </SidebarWrapper>
     </div>
   );
 };
