@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
+import ContentContainer from "components/UI/ContentContainer";
+
 const Wrapper = styled.div`
   position: relative;
   margin-top: 250px;
@@ -14,23 +16,11 @@ const Title = styled.h1`
   margin: 0 0 15px 20px;
 `;
 
-const Body = styled.div`
-  background: rgba(36, 38, 33, 0.8);
-  border: 1px solid #59584c;
-  border-radius: 5px;
-`;
-
-const Container = styled.div`
-  padding: 20px;
-`;
-
 const MainContentLayout = ({ title, children }) => {
   return (
     <Wrapper>
       <Title>{title}</Title>
-      <Body>
-        <Container>{children}</Container>
-      </Body>
+      <ContentContainer>{children}</ContentContainer>
     </Wrapper>
   );
 };
