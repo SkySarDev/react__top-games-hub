@@ -15,8 +15,10 @@ export default function useInfiniteScroll(anchorRef, callback) {
       }
     }, options);
 
-    observerValue = anchorRef.current;
-    observer.observe(observerValue);
+    if (anchorRef.current) {
+      observerValue = anchorRef.current;
+      observer.observe(observerValue);
+    }
 
     return () => {
       if (observerValue) {

@@ -14,9 +14,9 @@ const HomePageContent = ({ isLoading, data }) => {
       <HomePageSection
         isLoading={isLoading}
         Component={GameCard}
-        title={"New releases"}
-        link={routes.ROUTE_RELEASE_CALENDAR}
-        contentArr={data?.content.newReleases}
+        title={"All games"}
+        link={routes.ROUTE_GAMES}
+        contentArr={data?.content.allGames}
       />
 
       <HomePageSection
@@ -32,9 +32,9 @@ const HomePageContent = ({ isLoading, data }) => {
       <HomePageSection
         isLoading={isLoading}
         Component={GameCard}
-        title={"All games"}
-        link={routes.ROUTE_GAMES}
-        contentArr={data?.content.allGames}
+        title={"New releases"}
+        link={routes.ROUTE_RELEASE_CALENDAR}
+        contentArr={data?.content.newReleases}
         top={25}
       />
 
