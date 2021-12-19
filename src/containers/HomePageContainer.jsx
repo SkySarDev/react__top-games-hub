@@ -5,9 +5,12 @@ import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_HOME } from "utils/constants";
 
 import HomePageContent from "views/content/HomePageContent";
+import ErrorNotification from "views/content/ErrorNotification";
 
 const HomePageContainer = () => {
-  const { data, firstLoading } = useSelector((state) => state.mainContent);
+  const { data, firstLoading, error } = useSelector(
+    (state) => state.mainContent
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,10 +19,16 @@ const HomePageContainer = () => {
 
   return (
     <>
-      {firstLoading || data.category !== ROUTE_HOME ? (
-        <HomePageContent isLoading />
+      {error ? (
+        <ErrorNotification error={error} />
       ) : (
-        <HomePageContent isLoading={false} data={data} />
+        <>
+          {firstLoading || data.category !== ROUTE_HOME ? (
+            <HomePageContent isLoading />
+          ) : (
+            <HomePageContent isLoading={false} data={data} />
+          )}
+        </>
       )}
     </>
   );

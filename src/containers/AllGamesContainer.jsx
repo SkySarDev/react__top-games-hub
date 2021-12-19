@@ -6,10 +6,11 @@ import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_GAMES } from "utils/constants";
 
 import GamesListContent from "views/content/GamesListContent";
+import ErrorNotification from "views/content/ErrorNotification";
 
 const AllGamesContainer = () => {
   const { pathname } = useLocation();
-  const { data, firstLoading, loading } = useSelector(
+  const { data, firstLoading, loading, error } = useSelector(
     (state) => state.mainContent
   );
   const dispatch = useDispatch();
@@ -21,10 +22,20 @@ const AllGamesContainer = () => {
 
   return (
     <>
-      {firstLoading || data.category !== pathname ? (
-        <GamesListContent firstLoading />
+      {error ? (
+        <ErrorNotification error={error} />
       ) : (
-        <GamesListContent firstLoading={false} loading={loading} data={data} />
+        <>
+          {firstLoading || data.category !== pathname ? (
+            <GamesListContent firstLoading />
+          ) : (
+            <GamesListContent
+              firstLoading={false}
+              loading={loading}
+              data={data}
+            />
+          )}
+        </>
       )}
     </>
   );

@@ -25,7 +25,7 @@ const CardsListContent = ({ firstLoading, loading, data }) => {
   return (
     <MainContentLayout title={firstLoading ? "Loading..." : data.title}>
       <ContentGrid>
-        {!!data?.content_array.length &&
+        {data &&
           data.content_array.map((cardItem) => (
             <Card
               key={cardItem.id}
@@ -38,6 +38,7 @@ const CardsListContent = ({ firstLoading, loading, data }) => {
           <SkeletonCardsCreator length={15} CardsComponent={CardSkeleton} />
         )}
       </ContentGrid>
+
       {(!firstLoading || !loading) && <div ref={anchor} />}
     </MainContentLayout>
   );

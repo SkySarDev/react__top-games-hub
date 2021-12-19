@@ -34,7 +34,7 @@ export const fetchContent = (queryParams) => async (dispatch) => {
 
     dispatch(loadContentSuccess(response.data));
   } catch (err) {
-    dispatch(loadContentError(err));
+    dispatch(loadContentError(err.message));
   }
 };
 
@@ -46,6 +46,6 @@ export const fetchMoreData = (queryParams) => async (dispatch) => {
 
     dispatch(loadMoreDataSuccess(response.data));
   } catch (err) {
-    dispatch(loadContentError(err));
+    dispatch(loadContentError(err.message));
   }
 };

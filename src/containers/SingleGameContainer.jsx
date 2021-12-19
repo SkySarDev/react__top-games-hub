@@ -6,9 +6,12 @@ import { fetchContent } from "store/reducers/mainContentReducer/actions";
 import { ROUTE_GAMES } from "utils/constants";
 
 import SingleGameContent from "views/content/SingleGameContent";
+import ErrorNotification from "views/content/ErrorNotification";
 
 const SingleGameContainer = () => {
-  const { data, firstLoading } = useSelector((state) => state.mainContent);
+  const { data, firstLoading, error } = useSelector(
+    (state) => state.mainContent
+  );
   const dispatch = useDispatch();
   const { slug } = useParams();
 
@@ -18,10 +21,16 @@ const SingleGameContainer = () => {
 
   return (
     <>
-      {firstLoading || !data.game ? (
-        <SingleGameContent isLoading />
+      {error ? (
+        <ErrorNotification error={error} />
       ) : (
-        <SingleGameContent isLoading={false} data={data.game} />
+        <>
+          {firstLoading || !data.game ? (
+            <SingleGameContent isLoading />
+          ) : (
+            <SingleGameContent isLoading={false} data={data.game} />
+          )}
+        </>
       )}
     </>
   );

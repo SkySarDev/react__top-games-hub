@@ -8,9 +8,10 @@ import { ROUTE_RELEASE_CALENDAR } from "utils/constants";
 
 import { getDefaultDateRange } from "utils/dateFuncs";
 import GamesListContent from "views/content/GamesListContent";
+import ErrorNotification from "views/content/ErrorNotification";
 
 const ReleaseCalendarContainer = () => {
-  const { data, firstLoading, loading } = useSelector(
+  const { data, firstLoading, loading, error } = useSelector(
     (state) => state.mainContent
   );
   const dispatch = useDispatch();
@@ -32,15 +33,21 @@ const ReleaseCalendarContainer = () => {
 
   return (
     <>
-      {firstLoading || data.category !== ROUTE_RELEASE_CALENDAR ? (
-        <GamesListContent firstLoading showDatePicker />
+      {error ? (
+        <ErrorNotification error={error} />
       ) : (
-        <GamesListContent
-          firstLoading={false}
-          loading={loading}
-          data={data}
-          showDatePicker
-        />
+        <>
+          {firstLoading || data.category !== ROUTE_RELEASE_CALENDAR ? (
+            <GamesListContent firstLoading showDatePicker />
+          ) : (
+            <GamesListContent
+              firstLoading={false}
+              loading={loading}
+              data={data}
+              showDatePicker
+            />
+          )}
+        </>
       )}
     </>
   );

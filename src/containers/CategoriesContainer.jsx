@@ -5,10 +5,11 @@ import { useLocation } from "react-router-dom";
 import { fetchContent } from "store/reducers/mainContentReducer/actions";
 
 import CardsListContent from "views/content/CardsListContent";
+import ErrorNotification from "views/content/ErrorNotification";
 
 const CategoriesContainer = () => {
   const { pathname } = useLocation();
-  const { data, firstLoading, loading } = useSelector(
+  const { data, firstLoading, loading, error } = useSelector(
     (state) => state.mainContent
   );
   const dispatch = useDispatch();
@@ -19,10 +20,20 @@ const CategoriesContainer = () => {
 
   return (
     <>
-      {firstLoading || data.category !== pathname ? (
-        <CardsListContent firstLoading />
+      {error ? (
+        <ErrorNotification error={error} />
       ) : (
-        <CardsListContent firstLoading={false} loading={loading} data={data} />
+        <>
+          {firstLoading || data.category !== pathname ? (
+            <CardsListContent firstLoading />
+          ) : (
+            <CardsListContent
+              firstLoading={false}
+              loading={loading}
+              data={data}
+            />
+          )}
+        </>
       )}
     </>
   );

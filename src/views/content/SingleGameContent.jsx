@@ -14,7 +14,6 @@ import GameDescription from "components/blocks/SingleGameContent/GameDescription
 const BoxInner = styled.div`
   font-size: 18px;
   line-height: 130%;
-  padding: 20px;
 `;
 
 const TopGrid = styled.div`
