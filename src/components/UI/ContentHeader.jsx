@@ -7,8 +7,8 @@ import defaultHeaderImg from "images/default-header-image.jpg";
 const Header = styled.header`
   position: fixed;
   top: 15px;
-  width: 1100px;
-  height: 619px;
+  width: 1120px;
+  height: 630px;
   background-image: url(${({ headerImage }) => headerImage});
   background-position: center;
   background-size: cover;

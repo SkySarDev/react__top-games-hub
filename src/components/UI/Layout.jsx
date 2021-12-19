@@ -10,7 +10,7 @@ const Container = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 290px auto;
+  grid-template-columns: 270px 1120px;
   column-gap: 20px;
 `;
 
