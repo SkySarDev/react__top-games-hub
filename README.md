@@ -8,7 +8,7 @@ https://top-games-hub.netlify.app
 
 ### **Technology stack**
 Frontend: 
-ReactJS, Redux, Styled components
+ReactJS, Redux, Styled components, Axios
 
 Backend:
 NodeJS (Express), Rawg.io api
