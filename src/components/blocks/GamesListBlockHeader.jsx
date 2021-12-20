@@ -11,12 +11,13 @@ const TitleWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   grid-template-columns: repeat(2, auto);
+  column-gap: 10px;
   margin-bottom: 20px;
 `;
 
 const GamesCountTitle = styled.div`
   display: grid;
-  grid-template-columns: auto minmax(100px, auto);
+  grid-template-columns: auto minmax(70px, auto);
   align-items: center;
   column-gap: 10px;
 `;

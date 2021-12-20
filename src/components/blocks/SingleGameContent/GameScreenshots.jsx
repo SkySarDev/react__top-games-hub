@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import SectionTitle from "components/UI/SectionTitle";
+import SkeletonCardsCreator from "components/UI/SkeletonCardsCreator";
 
 const Grid = styled.div`
   display: grid;
@@ -12,7 +13,6 @@ const Grid = styled.div`
 
 const ImageWrapper = styled.div`
   position: relative;
-  width: 341px;
   height: 192px;
   object-fit: cover;
   border-radius: 5px;
@@ -27,6 +27,7 @@ const Image = styled.img`
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 0.3s;
+  object-fit: cover;
 
   &:hover {
     opacity: 1;
@@ -40,13 +41,15 @@ const GameScreenshots = ({ isLoading, screenshots, gameName }) => {
         Screenshots
       </SectionTitle>
       <Grid>
-        {isLoading
-          ? Array.from({ length: 6 }, (_, i) => <ImageWrapper key={i} />)
-          : screenshots.map((screenItem) => (
-              <ImageWrapper key={screenItem.id}>
-                <Image src={screenItem.image} alt={gameName} />
-              </ImageWrapper>
-            ))}
+        {isLoading ? (
+          <SkeletonCardsCreator length={6} CardsComponent={ImageWrapper} />
+        ) : (
+          screenshots.map((screenItem) => (
+            <ImageWrapper key={screenItem.id}>
+              <Image src={screenItem.image} alt={gameName} />
+            </ImageWrapper>
+          ))
+        )}
       </Grid>
     </>
   );

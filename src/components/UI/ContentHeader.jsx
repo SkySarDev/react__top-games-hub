@@ -13,6 +13,11 @@ const Header = styled.header`
   background-position: center;
   background-size: cover;
 
+  @media (max-width: 1200px) {
+    width: 880px;
+    height: 495px;
+  }
+
   &:before {
     position: absolute;
     content: "";
